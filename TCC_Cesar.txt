@@ -1,0 +1,8068 @@
+UNIVERSIDADE TECNOLÓGICA FEDERAL DO PARANÁ
+CÂMPUS DE CURITIBA
+CURSO DE ENGENHARIA ELÉTRICA
+
+CESAR AUGUSTO MARIANO DE OLIVEIRA
+
+ANÁLISE DE SEGURANÇA DE TENSÃO EM SISTEMAS ELÉTRICOS DE
+POTÊNCIA, CONSIDERANDO CONTINGÊNCIAS DE LINHAS DE TRANSMISSÃO
+E UNIDADES GERADORAS
+
+TRABALHO DE CONCLUSÃO DE CURSO
+
+CURITIBA
+2019
+
+CESAR AUGUSTO MARIANO DE OLIVEIRA
+
+ANÁLISE DE SEGURANÇA DE TENSÃO EM SISTEMAS ELÉTRICOS DE
+POTÊNCIA, CONSIDERANDO CONTINGÊNCIAS DE LINHAS DE TRANSMISSÃO
+E UNIDADES GERADORAS
+
+Trabalho de Conclusão do Curso de
+Graduação
+
+em
+
+Engenharia
+
+Elétrica,
+
+apresentado à disciplina de Trabalho de
+Conclusão de Curso 2, do Departamento
+Acadêmico de Eletrotécnica (DAELT) da
+Universidade Tecnológica Federal do
+Paraná (UTFPR), como requisito parcial
+para obtenção do título de Engenheiro
+Eletricista.
+Orientador: Prof. Dr. Raphael Augusto de
+Souza Benedito
+
+CURITIBA
+2019
+
+Cesar Augusto Mariano de Oliveira
+
+Análise de Segurança de Tensão em Sistemas Elétricos de
+Potência, Considerando Contingências de Linhas de
+Transmissão e Unidades Geradoras
+
+Este Trabalho de Conclusão de Curso de Graduação foi julgado e aprovado como requisito parcial para
+a obtenção do Título de Engenheiro Eletricista, do curso de Engenharia Elétrica do Departamento
+Acadêmico de Eletrotécnica (DAELT) da Universidade Tecnológica Federal do Paraná (UTFPR).
+
+Curitiba, 21 de novembro de 2019.
+
+____________________________________
+Prof. Antonio Carlos Pinho, Dr.
+Coordenador de Curso
+Engenharia Elétrica
+
+____________________________________
+Profa. Annemarlen Gehrke Castagna, Mestre
+Responsável pelos Trabalhos de Conclusão de Curso
+de Engenharia Elétrica do DAELT
+
+ORIENTAÇÃO
+
+BANCA EXAMINADORA
+
+______________________________________
+Raphael Augusto de Souza Benedito, Dr.
+Universidade Tecnológica Federal do Paraná
+Orientador
+
+_____________________________________
+Andrea Lucia Costa, Dra.
+Universidade Tecnológica Federal do Paraná
+
+_____________________________________
+Nastasha Salame da Silva, Dra.
+Universidade Tecnológica Federal do Paraná
+
+A folha de aprovação assinada encontra-se na Coordenação do Curso de Engenharia Elétrica
+
+AGRADECIMENTOS
+
+Agradeço à Deus, presente em todos os momentos.
+Aos meus pais, Vilmondes e Lucia, por estarem sempre ao meu lado, mesmo
+estando longe, me apoiando em todas as minhas decisões e sendo para mim um
+exemplo de humildade.
+Ao meu querido irmão João Marcos, obrigado pelas conversas e pelo exemplo
+de coragem.
+À minha grande família, especialmente aos meus tios, Lorini e Lourdes, que
+me acolheram em boa parte desta jornada.
+A todos os amigos, colegas e professores que em algum momento fizeram
+parte da minha formação pessoal e profissional. Em especial, agradeço ao Prof. Dr.
+Raphael Benedito pela paciência e pela oportunidade de desenvolver este trabalho.
+
+RESUMO
+OLIVEIRA, Cesar A. M. Análise de segurança de tensão em sistemas elétricos de
+potência, considerando contingências de linhas de transmissão e unidades
+geradoras. 2019. 96 f. Trabalho de Conclusão de Curso (Graduação – Curso de
+Engenharia Elétrica). Universidade Tecnológica Federal do Paraná, Curitiba, 2019.
+
+Os problemas de instabilidade de tensão irão continuar enquanto os centros de
+operação e controle de sistemas elétricos de potência (SEPs) mantiverem o
+compromisso de respeitarem as restrições de carga, operação e segurança. Este é
+um grande desafio devido a atual demanda de energia elétrica, da dificuldade de
+instalação de novas fontes de geração e da característica do sistema interligado. Este
+trabalho, portanto, auxilia os profissionais desta área apresentando um estudo de
+estabilidade de tensão ao analisar e prever o perfil de tensão dos SEPs mediante
+grandes e pequenas perturbações, que, respectivamente, referem-se a contingências
+de linhas de transmissão e unidades geradoras, e, a perturbações normais de carga.
+Por meio da análise estática, foi utilizado o método do Fluxo de Potência Continuado
+(FPC), método no qual utiliza-se de um incremento de carga como parâmetro de
+continuação a fim de obter a margem de carregamento do sistema em análise, e, em
+conjunto, a utilização de uma tensão eficaz para encontrar o ponto de colapso. Para
+a modelagem dos sistemas, foram considerados os limites de potência ativa e reativa
+das unidades geradoras, bem como os níveis de tensão determinados pelo Operador
+Nacional do Sistema Elétrico (ONS). Considerando tais níveis de tensão, realizou-se
+a análise do caso base, o controle da faixa operativa de tensão por meio do ajuste de
+TAP e o acréscimo de capacitores shunt, além da obtenção dos limites de segurança
+de operação considerando as contingências de linhas de transmissão e unidades
+geradoras. Por fim, avaliando-se os resultados, obteve-se um aumento da margem de
+carregamento dos sistemas, assim como da qualidade das tensões nas barras em
+virtude do respeito aos níveis de tensão prescritos. Os SEPs utilizados neste trabalho
+foram os sistemas de 14, 30 e 57 barras do Instituto de Engenheiros Eletricistas e
+Eletrônicos (IEEE).
+Palavras chave: estabilidade de tensão, fluxo de potência continuado, níveis de
+tensão, segurança de tensão.
+
+ABSTRACT
+OLIVEIRA, Cesar A. M. Voltage security analysis in electrical power systems
+considering transmission line and generating unit contingencies. 2019. 96 f.
+Trabalho de Conclusão de Curso (Graduação – Curso de Engenharia Elétrica).
+Universidade Tecnológica Federal do Paraná, Curitiba, 2019.
+
+Voltage instability problems will continue as long as the Electrical Power System
+(SEPs) operation and control centers remain committed to respecting load, operational
+and safety restrictions. This is a major challenge due to the current demand for
+electricity, difficulty of installing new generation sources and the characteristic of the
+interconnected system. This work, therefore, assists professionals in this area by
+presenting a voltage stability study by analyzing and predicting the voltage profile of
+SEPs through large and small disturbances, which, respectively, refer to contingencies
+of transmission lines and generating units, and at normal load disturbances. Through
+static analysis, the Continuous Power Flow (FPC) method was applied, which uses a
+load increment as a continuation parameter to obtain the loading margin for the system,
+and together, the use of an effective voltage to find the collapse point. For the modeling
+of the systems, the active and reactive power limits of generating units were
+considered, as well as the voltage levels determined by the National Electric System
+Operator (ONS). Considering these voltage levels, the base case analysis, the control
+of the operating voltage range through TAP adjustment and the addition of shunt
+capacitors, besides obtaining the operating safety limits considering the contingencies
+of power lines transmission and generating units were performed. Finally, by
+evaluating the results, an increase in the loading margin was obtained, as well as the
+voltage quality in the busses due to the compliance with the prescribed voltage levels.
+The SEPs used in this paper were the 14, 30 and 57 bus system of the Institute of
+Electrical and Electronic Engineers (IEEE).
+
+Keywords: voltage stability, continuous power flow, voltage levels, voltage security.
+
+LISTA DE FIGURAS
+
+FIGURA 1 - Estados de Operação do SEP. .............................................................. 20
+FIGURA 2 - Subdivisão das áreas de estudo de Estabilidade de Tensão. ............... 22
+FIGURA 3 - Modelo 𝛑-equivalente de uma linha transmissão. ................................. 23
+FIGURA 4 - Esquema de Fluxo de Potência utilizando a carga e tensão como
+parâmetro de continuação. ........................................................................................ 31
+FIGURA 5 - Curva de capabilidade de um gerador síncrono. ................................... 32
+FIGURA 6 – Limite de Capacidade de Carga Pós-Contingência (LCCPC). .............. 38
+FIGURA 7 – Determinação do Limite de Operação Segura (LOS). .......................... 39
+FIGURA 8 - Limite de Operação Segura (LOS) com ações de controle. .................. 40
+FIGURA 9 – Faixa operativa de acordo com os limites de tensão. ........................... 43
+FIGURA 10 - Fluxograma do algoritmo de FPC considerando a carga e a tensão como
+parâmetros de continuação. ...................................................................................... 45
+FIGURA 11 - Fluxograma do algoritmo de determinação da margem de operação de
+tensão. ...................................................................................................................... 47
+FIGURA 12 – Sistema de 14 Barras. ........................................................................ 50
+FIGURA 13 – Curvas 𝝀𝑽, 𝝀𝑷𝒈𝒆𝒓 e 𝝀𝑸𝒈𝒆𝒓 para o sistema de 14 barras. ................. 51
+FIGURA 14 – Curva 𝝀𝑽 para as barras de carga do sistema de 14 barras. .............. 52
+FIGURA 15 – Curvas 𝝀𝑽, 𝝀𝑷𝒈𝒆𝒓 e 𝝀𝑸𝒈𝒆𝒓 para o sistema de 14 barras, considerando
+ações de controle de tensão ..................................................................................... 53
+FIGURA 16 – Curvas 𝝀𝑽𝒔 para as barras de carga do sistema de 14 barras, utilizando
+as ações de controle de tensão................................................................................. 54
+FIGURA 17 – Sistema de 30 barras. ......................................................................... 59
+FIGURA 18 - Curvas 𝝀𝑽, 𝝀𝑷𝒈𝒆𝒓 e 𝝀𝑸𝒈𝒆𝒓 para o sistema de 30 barras. .................. 60
+FIGURA 19 – Curva 𝝀𝑽 para as barras de carga do sistema de 30 barras. .............. 61
+FIGURA 20 - Curvas 𝝀𝑽, 𝝀𝑷𝒈𝒆𝒓 e 𝝀𝑸𝒈𝒆𝒓 para o sistema de 30 barras, considerando
+ações de controle de tensão. .................................................................................... 62
+FIGURA 21 - Curvas 𝝀𝑽𝒔 para as barras de carga do sistema de 30 barras, utilizando
+as ações de controle de tensão................................................................................. 63
+FIGURA 22 – Sistema de 57 Barras. ........................................................................ 68
+FIGURA 23 - Curvas 𝝀𝑽, 𝝀𝑷𝒈𝒆𝒓 e 𝝀𝑸𝒈𝒆𝒓 para o sistema de 57 barras. .................. 69
+
+FIGURA 24 - Curvas 𝝀𝑽𝒔 para as barras de carga críticas do sistema de 57 barras.
+.................................................................................................................................. 70
+FIGURA 25 - Curvas 𝝀𝑽, 𝝀𝑷𝒈𝒆𝒓 e 𝝀𝑸𝒈𝒆𝒓 para o sistema de 57 barras, considerando
+ações de controle de tensão. .................................................................................... 72
+FIGURA 26 - Curvas 𝝀𝑽𝒔 para as barras de carga do sistema de 57 barras, utilizando
+as ações de controle de tensão................................................................................. 73
+
+LISTA DE TABELAS
+TABELA 1 - Níveis de Tensão estabelecidos pelo ONS. .......................................... 42
+TABELA 2 – Capacitores shunt disponíveis nas respectivas barras do sistema de 14
+barras. ....................................................................................................................... 55
+TABELA 3 – Ajustes de TAP disponíveis para o sistema de 14 barras. .................... 55
+TABELA 4 – Resultados das contingências de linhas de transmissão para o sistema
+de 14 barras. ............................................................................................................. 56
+TABELA 5 – Resultados das contingências das unidades geradoras do sistema de 14
+barras. ....................................................................................................................... 58
+TABELA 6 - Capacitores shunt disponíveis nas respectivas barras do sistema de 30
+barras. ....................................................................................................................... 64
+TABELA 7 - Ajustes de TAP disponíveis para o sistema de 30 barras. .................... 64
+TABELA 8 - Resultados das contingências de linhas de transmissão para o sistema
+de 30 barras. ............................................................................................................. 65
+TABELA 9 - Resultados das contingências das unidades geradoras do sistema de 30
+barras. ....................................................................................................................... 67
+TABELA 10 - Capacitores shunt disponíveis nas respectivas barras do sistema de 57
+barras. ....................................................................................................................... 74
+TABELA 11 - Ajustes de TAP disponíveis para o sistema de 57 barras. .................. 74
+TABELA 12 - Resultados das contingências de linhas de transmissão para o sistema
+de 57 barras. ............................................................................................................. 75
+TABELA 13 - Resultados das contingências das unidades geradoras do sistema de
+57 barras. .................................................................................................................. 78
+TABELA 14 – Dados de barra, sistema de 14 barras. ............................................... 84
+TABELA 15 – Dados de linha, sistema de 14 barras. ............................................... 85
+TABELA 16 – Fatores de participação de carga e geração, sistema de 14 barras. .. 86
+TABELA 17 – Dados de barra, sistema de 30 barras. ............................................... 87
+TABELA 18 – Dados de linha, sistema de 30 barras. ............................................... 88
+TABELA 19– Fatores de participação de carga e geração, sistema de 30 barras. ... 90
+TABELA 20 – Dados de barra, sistema de 57 barras. ............................................... 91
+TABELA 21 – Dados de linha, sistema de 57 barras. ............................................... 93
+TABELA 22 – Fatores de participação de carga e de geração, sistema de 57 barras.
+.................................................................................................................................. 95
+
+LISTA DE ABREVIATURAS E SIGLAS
+
+SEP – Sistema Elétrico de Potência
+FPC – Fluxo de Potência Continuado
+IEEE – Instituto de Engenheiros Eletricistas e Eletrônicos
+ONS – Operador Nacional do Sistema
+SE – Subestação
+UHE – Usina Hidrelétrica
+ERAC – Esquema Regional de Alívio de Carga
+SIN – Sistema Interligado Nacional
+UTFPR – Universidade Tecnológica Federal do Paraná
+MET – Margem de Estabilidade de Tensão
+LCCPC – Limite de Capacidade de Carga Pós-Contingência
+LOS – Limite de Operação Segura
+
+SUMÁRIO
+1
+
+INTRODUÇÃO .................................................................................................... 12
+1.1
+
+TEMA ........................................................................................................... 12
+
+1.1.1
+
+2
+
+Delimitação do Tema ............................................................................. 13
+
+1.2
+
+PROBLEMAS E PREMISSAS ...................................................................... 13
+
+1.3
+
+OBJETIVOS ................................................................................................. 14
+
+1.3.1
+
+Objetivo Geral ........................................................................................ 14
+
+1.3.2
+
+Etapas e Objetivos Específicos ............................................................. 14
+
+1.4
+
+JUSTIFICATIVA ........................................................................................... 15
+
+1.5
+
+PROCEDIMENTOS METODOLÓGICOS..................................................... 16
+
+1.6
+
+ESTRUTURA DO TRABALHO ..................................................................... 17
+
+REFERENCIAL TEÓRICO ................................................................................. 18
+2.1 INTRODUÇÃO ................................................................................................. 18
+2.2 ESTADOS OPERATIVOS ................................................................................ 18
+2.3 ESTABILIDADE DE TENSÃO .......................................................................... 20
+2.4 FLUXO DE POTÊNCIA .................................................................................... 23
+2.4.1
+
+Fluxo de Carga Utilizando o Método de Newton Raphson .................... 26
+
+2.5 MÉTODO DE CONTINUAÇÃO: PARÂMETROS DE CARGA E TENSÃO ...... 28
+2.6 GERADORES SÍNCRONOS E ESTABILIDADE DE TENSÃO ........................ 31
+2.6.1
+
+3
+
+Violação dos Limites de Potência Ativa e Reativa ................................. 33
+
+2.7
+
+FATOR DE PARTICIPAÇÃO DE CARGA E GERAÇÃO.............................. 34
+
+2.8
+
+CRITÉRIOS DE SEGURANÇA DE TENSÃO .............................................. 37
+
+2.8.1
+
+Definição dos Limites de Segurança ..................................................... 37
+
+2.8.2
+
+Níveis de Tensão ................................................................................... 41
+
+METODOLOGIA DE ANÁLISE ........................................................................... 44
+3.1 ALGORITMO FPC CONSIDERANDO CARGA E TENSÃO COMO
+PARÂMETROS DE CONTINUAÇÃO..................................................................... 44
+3.2 ALGORITMO DE FPC CONSIDERANDO A FAIXA OPERATIVA DE
+TENSÃO ................................................................................................................ 46
+3.3 ETAPAS DE ANÁLISE ..................................................................................... 48
+
+4
+
+RESULTADOS ................................................................................................... 49
+4.1 RESULTADOS DO SISTEMA DE 14 BARRAS ............................................... 49
+4.1.1
+
+Etapa 1: Análise do Caso Base ............................................................. 50
+
+4.1.2
+
+Etapa 2: Análise do Caso Base com Ações de Controle de Tensão ..... 53
+
+4.1.3
+
+Etapa 3: Análise de Contingências de Linhas de Transmissão ............. 56
+
+4.1.4
+4.2
+
+RESULTADOS DO SISTEMA DE 30 BARRAS ........................................... 59
+
+4.2.1
+
+Etapa 1: Análise do Caso Base ............................................................. 60
+
+4.2.2
+
+Etapa 2: Análise do Caso Base com Ações de Controle de Tensão ..... 62
+
+4.2.3
+
+Etapa 3: Análise de Contingências de Linhas de Transmissão ............. 65
+
+4.2.4
+
+Etapa 4: Análise de Contingências de Unidades Geradoras ................. 67
+
+4.3
+
+5
+
+Etapa 4: Análise de Contingências de Unidades Geradoras ................. 57
+
+RESULTADOS DO SISTEMA DE 57 BARRAS ........................................... 68
+
+4.3.1
+
+Etapa 1: Análise do Caso Base ............................................................. 69
+
+4.3.2
+
+Etapa 2: Análise do Caso Base com Ações de Controle de Tensão ..... 72
+
+4.3.3
+
+Etapa 3: Análise de Contingências de Linhas de Transmissão ............. 75
+
+4.3.4
+
+Etapa 4: Análise de Contingências de Unidades Geradoras ................. 78
+
+CONCLUSÕES ................................................................................................... 80
+
+REFERÊNCIAS ......................................................................................................... 82
+ANEXO A – DADOS DO SISTEMA DE 14 BARRAS ................................................ 84
+ANEXO B – DADOS DO SISTEMA DE 30 BARRAS ................................................ 87
+ANEXO C – DADOS DO SISTEMA DE 57 BARRAS .............................................. 91
+
+12
+
+1
+
+1.1
+
+INTRODUÇÃO
+
+TEMA
+
+Atualmente, as sociedades industrialmente desenvolvidas carecem cada vez
+mais energia elétrica e, para atender esta demanda crescente, é fundamental a
+existência de um sistema elétrico de potência bem estruturado (ANDERSON; FOUAD,
+2003). Como afirma Kundur (1994), além de gerar, transmitir e distribuir energia, este
+sistema deve ser operado sob condições que assegurem sua continuidade, tais como
+tensão e frequência constantes, e que forneçam energia com baixos custos
+ambientais e econômicos.
+Van Cutsem e Vournas (1998) afirmam que os sistemas de potência vêm
+passando por condições de estresse nos últimos anos, grande parte devido ao
+crescimento e aos novos padrões de carga do mercado de energia, somado a
+dificuldade de instalação de novas fontes geradoras próximas do consumo. Mansour
+(2013) ressalta ainda que esta imprevisibilidade do sistema o leva a operar em
+condições adversas e fora de limites pré-estabelecidos, o que dificulta o seu controle
+e a minimização dos riscos de falha.
+Kundur (1994) caracteriza o termo estabilidade de tensão como sendo a
+habilidade de um sistema de potência em manter seus níveis normais de tensão,
+mesmo quando este é sujeito a uma perturbação. Deste modo, o fenômeno de
+instabilidade de tensão, como afirmam Taylor (1994), Kundur (1994) e Van Cutsem e
+Vournas (1998) pode levar a eventos sucessivos de queda de tensão, ocasionando o
+que se chama de Colapso de Tensão, termo que assinala a queda total ou parcial dos
+níveis normais de tensão.
+Segundo Anderson e Fouad (2003), o planejamento, controle e operação
+destes sistemas são desafios complexos para os profissionais que atuam na área,
+pois os eventos que levam ao colapso devem ser previstos e caso venham a ocorrer,
+devem possuir uma solução com resposta rápida.
+Sendo assim, este trabalho é dedicado à análise de segurança de tensão,
+envolvendo o cálculo do ponto de máximo carregamento e considerando
+
+13
+
+contingências de linhas e de unidades geradoras (diminuição da capacidade de
+geração).
+
+1.1.1 Delimitação do Tema
+
+Kundur (1994) classifica que, como um todo, a estabilidade de um sistema de
+potência depende essencialmente da estabilidade do ângulo do rotor, estabilidade de
+tensão e estabilidade de frequência. Tais fenômenos ainda podem ser analisados
+levando-se em conta o período de estudo após uma perturbação, isto é, curto, médio
+e longo prazo.
+O estudo de estabilidade de tensão abrange diversos fenômenos, sendo estes
+comumente divididos pelos pesquisadores e engenheiros entre estáticos e dinâmicos
+(TAYLOR, 1994). Choque Pillco (2011 apud DOBSON et al. 2002) ressalta que a
+análise estática é utilizada quando as variações no sistema são lentas e graduais, e
+permitem a solução de equações algébricas com métodos computacionais mais
+rápidos em relação aos métodos dinâmicos, que utilizam uma modelagem mais
+complexa (equações diferenciais ordinárias - EDOs) de modo que seu estudo é
+destinado a variações no sistema da ordem de milissegundos.
+Deste modo, pretende-se com este trabalho estudar o conceito de
+estabilidade de tensão, utilizando-se de modelos estáticos para estimar o ponto
+máximo de carregamento e efetuar a análise de contingências.
+
+1.2
+
+PROBLEMAS E PREMISSAS
+
+As oscilações de tensão entre a geração e o consumo são comuns em
+grandes redes de transferência de potência. Oliveira (2005) classifica como grandes
+perturbações aquelas que possuem característica transitória ou que permanecem por
+vários minutos tais como: curtos-circuitos, desligamento de linhas de transmissão, etc.
+Por outro lado, as pequenas perturbações são aquelas causadas por pequenas
+variações de carga. Van Cutsem e Vournas (2000) afirmam que alguns dos maiores
+desafios que englobam a análise de segurança são o planejamento e a verificação do
+
+14
+
+estado operativo do sistema, de modo que na ocorrência de algum tipo de distúrbio,
+este não venha a causar quedas sucessivas de tensão que podem provocar o colapso
+do sistema.
+Van Cutsem e Vournas (1998) ressaltam ainda que a avaliação preventiva em
+tempo real nos centros de controle é primordial, assim é possível avaliar qual é a
+margem de segurança e como o sistema se comporta sob uma contingência presente
+no momento. Como afirma Mansour (2013), um procedimento utilizado atualmente
+para este tipo de avaliação consiste na obtenção da Margem de Estabilidade de
+Tensão do sistema através de sua respectiva curva 𝑃𝑉.
+Assim, pretende-se com essa pesquisa realizar um estudo centrado na
+obtenção da curva 𝑃𝑉 e como ela se comporta quando submetida a diferentes tipos
+de contingências, podendo ser de linhas de transmissão e de unidades geradoras,
+sendo esta última pouco explorada na literatura acadêmica, mas que é objeto de
+preocupação constante perante os operadores.
+Deste modo, com o suporte do software MATLAB®, é possível analisar,
+utilizando os métodos de cálculo de fluxo de potência continuado, qual a margem de
+operação segura e salientar as diferenças com a inserção de limites de potência
+reativa nas barras, considerando os sistemas testes de 14, 30 e 57 barras do IEEE.
+
+1.3
+
+OBJETIVOS
+
+1.3.1 Objetivo Geral
+Realizar a análise de segurança de tensão em sistemas elétricos de potência,
+considerando contingências de linhas e unidades geradoras.
+1.3.2 Etapas e Objetivos Específicos
+
+a)
+
+Estudar as causas do Colapso de Tensão;
+
+b)
+
+Implementar computacionalmente o cálculo de transferência de potência
+para a obtenção da curva 𝑃𝑉;
+
+15
+
+c)
+
+Utilizar o método do fluxo de potência continuado para encontrar o
+máximo carregamento;
+
+d)
+
+Inserir limites de potência ativa e reativa no sistema e verificar o seu
+comportamento;
+
+e)
+
+Encontrar o máximo carregamento que não viole os limites de tensão;
+
+f)
+
+Verificar qual o limite de operação seguro para a simulação realizada;
+
+g)
+
+Verificar qual o comportamento do sistema quando este é submetido a
+contingências.
+
+1.4
+
+JUSTIFICATIVA
+
+A estabilidade de tensão vai continuar sendo um desafio ao longo de muitos
+anos e a importância de seu estudo deve aumentar consideravelmente. Um dos
+motivos é o uso intensivo da estrutura de transmissão disponível aliado a limitação da
+construção de grandes fontes geradoras (TAYLOR, 1994). Van Cutsem e Vournas
+(1998) confirmam esta declaração ao dizerem que este fenômeno não é linear, e,
+conforme o estresse do sistema aumenta, a não-linearidade caminha na mesma
+proporção, necessitando de métodos complexos para a obtenção da solução.
+Para confirmar estas considerações, podem-se citar algumas ocorrências de
+distúrbios que possuem no colapso de tensão uma das causas da interrupção do
+fornecimento de energia elétrica não somente no Brasil, mas também no mundo:
+a)
+
+Brasil - março e maio de 1999, janeiro de 2002 (GOMES, 2004);
+
+b)
+
+Estados Unidos/Canadá – 14 de agosto de 2003 (BIALEK, 2007);
+
+c)
+
+Europa – 4 de novembro de 2006 (BIALEK, 2007);
+
+d)
+
+Brasil - 10 de novembro de 2009 (ONS, 2009);
+
+e)
+
+Brasil – 19 de janeiro de 2015 (ONS, 2015).
+
+Ainda no Brasil, pode-se citar a ocorrência do dia 21 de março de 2018. Em
+virtude de um ajuste incorreto no disjuntor de proteção da Subestação (SE) Xingu, a
+Usina Hidrelétrica (UHE) de Belo Monte teve seu fluxo interrompido quando este
+chegou próximo a 4000MW. O ONS não havia sido informado sobre este ajuste de
+proteção e não houve a revisão da lógica do sistema de proteção para que houvesse
+corte de geração no momento da falta. Nessa ocasião, houve instabilidade de ângulo
+
+16
+
+do rotor, de frequência e de tensão no Sistema Interligado Nacional (SIN), devido ao
+contingenciamento e perdas de várias unidades geradoras (75% de corte de geração
+oriundas das regiões Norte e Nordeste. Com isso, o Esquema Regional de Alívio de
+Carga (ERAC) atuou em 5 estágios realizando cortes de carga que ao final somavam
+21735 MW, o que resultou em 27% de corte de carga em relação à carga existente
+antes da perturbação (ONS, 2018).
+Deste modo, existe a necessidade de diagnósticos que antecipem este tipo
+de falha, uma vez que medidas preventivas reduzem o risco de novos incidentes e
+permitem que o sistema opere em segurança. A utilização de ferramentas
+computacionais nos centros de controle permite que os sistemas interligados possam
+ser monitorados em tempo real, mas o desafio consiste em descobrir métodos de
+resposta rápida para que se tomem medidas antes da ocorrência do colapso.
+Sendo assim, estudar e analisar métodos rápidos de cálculo de fluxo de
+potência juntamente com o comportamento do sistema diante a contingências permite
+a previsibilidade do fenômeno, auxilia na tomada de decisão e, consequentemente,
+providencia uma rápida recuperação do sistema em casos extremos.
+
+1.5
+
+PROCEDIMENTOS METODOLÓGICOS
+
+Este trabalho de pesquisa com aplicação prática é iniciado primeiramente com
+a apresentação da revisão bibliográfica, com os aspectos teóricos principais que
+envolvem o tema estabilidade de tensão e os métodos de cálculo para o ponto de
+máximo carregamento. O material de referências para a pesquisa foi obtido por meio
+da consulta em bancos de dados disponíveis contemplando monografias,
+dissertações, teses, periódicos e artigos acerca do tema.
+Após a apresentação da metodologia para o cálculo do ponto máximo de
+carregamento, adicionam-se variáveis ao estudo com a aplicação do método do fluxo
+de potência continuado e a inserção de potência ativa e reativa, onde implementouse no software computacional MATLAB® uma sequência de ações para a obtenção
+do ponto de colapso de tensão.
+
+17
+
+Deste modo, realiza-se a análise de contingências de linhas de transmissão e
+unidades geradoras com a utilização dos sistemas de 14, 30 e 57 barras do IEEE,
+assim como a obtenção da margem de operação segura e a análise dos limites de
+segurança de tensão.
+Por fim, são apresentados os resultados obtidos com a implementação do
+algoritmo elaborado, dando ênfase para a análise de contingências e concluindo com
+as considerações finais sobre o tema.
+
+1.6
+
+ESTRUTURA DO TRABALHO
+
+Este presente trabalho é divido em cinco capítulos. O capítulo um é destinado
+à introdução e delimitação do tema, nele são apresentadas as definições, objetivos e
+as tratativas que serão realizadas em relação ao problema da estabilidade de tensão.
+O capítulo dois oferece uma fundamentação teórica ao trabalho, pautado em
+referências primordiais no assunto de estabilidade em sistemas elétricos de potência,
+bem como apresenta o método para o cálculo do ponto máximo de carregamento.
+Em seguida, no capítulo três, é detalhado o algoritmo que calcula o ponto de
+máximo carregamento, de forma a encontrar a margem de operação segura,
+respeitando a faixa operativa de tensão. Do mesmo modo, são apresentadas as
+etapas de análise para a obtenção dos resultados.
+O capítulo quatro é dedicado a análise e comparação dos resultados obtidos
+com a implementação do algoritmo. E, por fim, no capítulo cinco, são apresentadas
+as conclusões finais em relação ao trabalho.
+
+18
+
+2
+
+REFERENCIAL TEÓRICO
+
+2.1 INTRODUÇÃO
+Sendo a estabilidade de tensão uma das áreas de estudo no controle dos
+SEPs, é de grande importância considerar as definições, métodos e as referências
+mais utilizadas pelos profissionais desta área. Estas definições são importantes pois
+busca-se verificar de antemão o comportamento geral de um sistema elétrico, e, para
+isso, utiliza-se de uma modelagem matemática que retrate as estruturas existentes
+em campo.
+Portanto, neste capítulo serão apresentados os conceitos e termos que
+definem o estado geral de um sistema, e, em seguida, os métodos que serão utilizados
+para a obtenção dos resultados e posterior análise de estabilidade de tensão.
+Relacionados a estes estudos, serão adicionados conceitos de limitação das
+máquinas síncronas, e as definições a respeito da análise de segurança de tensão.
+
+2.2 ESTADOS OPERATIVOS
+Segundo Kundur (1994), com o objetivo de analisar e desenvolver formas de
+controle de operação dos sistemas de potência, é de fundamental importância
+classificar o comportamento do sistema elétrico de potência considerando seus
+“Estados Operativos”. Na determinação destes estados, deve-se realizar a análise
+contínua das restrições de carga, operação e de segurança, que dizem respeito a
+(LIACCO, 1974):
+a)
+
+Restrições de carga [𝑔(𝑥) = 0]: o sistema elétrico deve atender todos
+os consumidores;
+
+b)
+
+Restrições de operação [ℎ(𝑥) ≤ 0]: os limites de operação dos
+equipamentos devem ser respeitados;
+
+c)
+
+Restrições de segurança [𝑠(𝑥) ≤ 0]: análise do comportamento do
+sistema após prováveis contingências de equipamentos.
+
+Após definidas as restrições de carga, operação e segurança, Monticelli
+(1983) classifica os Estados de Operação da seguinte forma:
+
+19
+
+a)
+
+Normal Seguro - Todas as cargas são atendidas sem ultrapassar
+nenhum limite operacional e, dada uma contingência, o sistema é capaz
+de opor-se a ela. Todas as restrições são obedecidas;
+
+b)
+
+Normal Alerta – Neste caso todas as cargas são atendidas, mas o
+sistema está enfraquecido de tal forma que uma contingência pode
+ocasionar a sobrecarga dos equipamentos, podendo levar o mesmo
+diretamente para o estado de “Emergência”. Ações preventivas como o
+redespacho de geração podem ser tomadas para melhorar a condição
+do sistema;
+
+c)
+
+Emergência – O sistema entra no estado de emergência geralmente
+após a ocorrência de uma perturbação quando o mesmo já se
+encontrava no estado “Alerta”. Neste caso, ocorre a violação das
+restrições de operação. O sistema pode voltar para o estado “Alerta”
+após a eliminação das falhas e realizando cortes de carga, por exemplo;
+
+d)
+
+Restaurativo – Este estado caracteriza uma ação da qual as restrições
+operacionais são obedecidas uma vez que se sacrifica a integridade do
+sistema no estado de “Emergência”. Medidas corretivas imediatas, como
+cortes de carga em áreas específicas e a separação controlada de uma
+porção do sistema, são realizadas para que mais elementos não entrem
+em falha.
+
+A figura 1 apresenta os estados operativos da rede, conforme descrito
+anteriormente.
+
+20
+
+FIGURA 1 - Estados de Operação do SEP.
+
+Seguro
+Normal
+
+Alerta
+
+Restaurativo
+
+Emergência
+
+Transição Resultante de Controle Voluntário
+Transição Resultante de Controle Involuntário
+
+Fonte: Kundur (1994), adaptado.
+
+2.3 ESTABILIDADE DE TENSÃO
+
+De forma geral, o conceito de estabilidade aplicado ao sistema elétrico de
+potência pode ser definido como a capacidade do sistema em manter suas
+características normais de operação após o mesmo ser submetido à uma ou mais
+perturbações (KUNDUR, 1994).
+Neste sentido, como a instabilidade de um sistema elétrico de potência pode
+ocorrer de várias formas, classificar o conceito de estabilidade de acordo com o tipo
+de evento se torna uma medida eficaz na melhoria contínua dos sistemas, de modo
+que, realizando uma tratativa específica a cada caso, pode se aumentar a
+confiabilidade dos sistemas (KUNDUR et al., 2004).
+Segundo Kundur et al. (2004), os estudos envolvendo estabilidade em
+sistemas elétricos de potência podem ser divididos em três principais áreas:
+
+21
+
+a)
+
+Estabilidade do Ângulo do Rotor – refere-se à habilidade das máquinas
+síncronas manterem-se em sincronismo após uma perturbação;
+
+b)
+
+Estabilidade de Frequência – habilidade do sistema manter frequência
+constante, dentro do limite regulamentado, após uma perturbação,
+sendo esta resultante principalmente do desequilíbrio entre geração e a
+demanda de carga;
+
+c)
+
+Estabilidade de Tensão – referente à habilidade do sistema conservar as
+tensões eficazes nas barras dentro dos limites estabelecidos, mantendo
+sua condição de equilíbrio inicial após o sistema ser submetido a alguma
+perturbação.
+
+Referindo-se ao conceito de estabilidade de tensão, quando um SEP é
+submetido a alguma perturbação e esta provoca um aumento ou uma diminuição
+progressiva das tensões das barras, diz-se que o sistema se encontra em um estado
+de “Instabilidade de Tensão” (KUNDUR et al., 2004).
+Por outro lado, o termo “Colapso de Tensão” é utilizado para definir a
+sequência de eventos que sucedem a instabilidade de tensão, tais como blecautes e
+tensões abaixo dos limites em uma grande parcela do SEP (KUNDUR et al., 2004).
+As principais divisões do estudo de estabilidade em sistemas elétricos de
+potência descritas acima podem ser ampliadas de acordo com o tempo de análise e
+da dimensão das perturbações (KUNDUR et al., 2004). Como a Estabilidade de
+Tensão é objeto de estudo deste trabalho, a figura 2 ilustra a subdivisão deste grupo:
+
+22
+
+FIGURA 2 - Subdivisão das áreas de estudo de Estabilidade de Tensão.
+
+Estabilidade de
+Tensão
+
+Grandes
+Perturbações
+
+Curta
+Duração
+
+Pequenas
+Perturbações
+
+Longa
+Duração
+
+Fonte: Kundur et al. (2004), adaptado.
+
+A estabilidade de tensão envolvendo grandes perturbações se preocupa em
+garantir que o sistema permaneça estável quando das questões relacionadas à perda
+de geração, contingência nos circuitos e faltas no sistema. Enquanto que as pequenas
+perturbações estão relacionadas às alterações no sistema referentes ao incremento
+e/ou decremento de carga, verificando-se o comportamento do sistema mediante
+estas pequenas mudanças (KUNDUR et al., 2004).
+Segundo Kundur et al. (2004), a análise de perturbações pode variar de alguns
+segundos a até minutos, assim, a classificação é feita de acordo com o tempo de
+análise, sendo esta de curta ou de longa duração:
+a)
+
+Estabilidade de Tensão de Curta duração: envolve equipamentos de
+acionamento rápido como motores de indução e cargas eletronicamente
+controladas. Necessita de uma modelagem dinâmica do sistema a fim
+de obter uma resposta rápida ao distúrbio;
+
+b)
+
+Estabilidade de Tensão de Longa duração: envolve equipamentos de
+acionamento lento como mudança de TAP de transformadores, cargas
+controladas por temperatura e limitadores de corrente em geradores.
+Longos períodos de simulação são requeridos para o estudo do
+comportamento do sistema nestes casos.
+
+23
+
+Sendo assim, este trabalho irá realizar uma abordagem do estudo de
+estabilidade de tensão envolvendo as grandes e pequenas perturbações, onde,
+respectivamente, estão associadas a contingências de linhas de transmissão e
+unidades geradoras, como também às perturbações normais de cargas. Além disso,
+será considerado um período de longa duração, desprezando-se o período transitório,
+acarretando em análise estática.
+
+2.4 FLUXO DE POTÊNCIA
+
+Para a determinação da distribuição dos fluxos na rede de energia elétrica, se
+faz necessário o cálculo do fluxo de potência. Este é um método no qual utiliza-se da
+análise estática e os efeitos transitórios das perturbações não são considerados
+(MONTICELLI,1983). A análise estática nos fornece uma “fotografia” das condições
+atuais de um sistema elétrico de potência, permitindo assim a realização de
+simulações considerando desde pequenas à grandes perturbações.
+A modelagem das equações de fluxo segue as Leis de Kirchhoff e a
+representação mais comumente utilizada considerando os equipamentos de um
+sistema elétrico é chamado de “modelo 𝝅-equivalente”, sendo este ilustrado na figura
+3 (MONTICELLI, 1983):
+
+FIGURA 3 - Modelo 𝛑-equivalente de uma linha transmissão.
+
+k
+
+m
+
+zkm = rkm+ jxkm
+
+sh
+
+jbkm
+
+Fonte: Monticelli (1983), adaptado.
+
+sh
+
+jbkm
+
+24
+
+𝑧𝑘𝑚 = 𝑟𝑘𝑚 + 𝑗𝑥𝑘𝑚
+−1
+𝑦𝑘𝑚 = 𝑧𝑘𝑚
+= 𝑔𝑘𝑚 + 𝑗𝑏𝑘𝑚 =
+
+𝑟𝑘𝑚
+𝑥𝑘𝑚
+2 −𝑗 2
+2
++ 𝑥𝑘𝑚
+𝑟𝑘𝑚 + 𝑥𝑘𝑚
+
+2
+𝑟𝑘𝑚
+
+(2.1)
+
+(2.2)
+
+São apresentados nas equações 2.1 a 2.2 e figura 3, os parâmetros que
+definem o modelo 𝜋-equivalente de uma linha de transmissão, representados pelas
+componentes série: impedância 𝑧𝑘𝑚 , admitância 𝑦𝑘𝑚 , resistência 𝑟𝑘𝑚 , reatância 𝑥𝑘𝑚 ,
+condutância 𝑔𝑘𝑚 , susceptância 𝑏𝑘𝑚 e a susceptância capacitiva relativa ao campo
+𝑠ℎ
+elétrico nos condutores 𝑏𝑘𝑚
+. Na modelagem dos SEPs, é usual se desprezar a
+𝑠ℎ
+componente shunt 𝑔𝑘𝑚
+, pelo motivo de que seu valor não é significativo
+
+(MONTICELLI, 1983; KUNDUR,1994).
+A corrente que circula em uma linha de transmissão pode ser expressa
+através das tensões complexas nas barras, como segue:
+
+𝑠ℎ
+𝐼𝑘𝑚 = 𝑦𝑘𝑚 (𝐸𝑘 − 𝐸𝑚 ) + 𝑗𝑏𝑘𝑚
+𝐸𝑘
+
+(2.3)
+
+Sejam as tensões complexas nas barras definidas por:
+
+𝐸𝑘 = 𝑉𝑘 𝑒 𝑗𝜃𝑘 ; 𝐸𝑚 = 𝑉𝑚 𝑒 𝑗𝜃𝑚
+
+(2.4)
+
+E o fluxo de potência correspondente dado por:
+∗
+𝑆𝑘𝑚
+= 𝑃𝑘𝑚 − 𝑗𝑄𝑘𝑚 = 𝐸𝑘∗ 𝐼𝑘𝑚
+
+(2.5)
+
+Obtendo-se:
+∗
+
+𝑠ℎ
+∗
+𝑆𝑘𝑚
+= (𝑉𝑘 𝑒 𝑗𝜃𝑘 ) ∗ [𝑦𝑘𝑚 (𝑉𝑘 𝑒 𝑗𝜃𝑘 − 𝑉𝑚 𝑒 𝑗𝜃𝑚 ) + 𝑗𝑏𝑘𝑚
+𝑉𝑘 𝑒 𝑗𝜃𝑘 ]
+
+(2.6)
+
+Por fim, os fluxos 𝑃𝑘𝑚 e 𝑄𝑘𝑚 são identificados através da separação das partes
+reais e imaginárias da equação complexa (2.6), sendo estes:
+
+25
+
+𝑃𝑘𝑚 = 𝑉𝑘2 𝑔𝑘𝑚 − 𝑉𝑘 𝑉𝑚 𝑔𝑘𝑚 cos 𝜃𝑘𝑚 − 𝑉𝑘 𝑉𝑚 𝑏𝑘𝑚 sen 𝜃𝑘𝑚
+𝑠ℎ
+𝑄𝑘𝑚 = −𝑉𝑘2 (𝑏𝑘𝑚 + 𝑏𝑘𝑚
+) + 𝑉𝑘 𝑉𝑚 𝑏𝑘𝑚 cos 𝜃𝑘𝑚 − 𝑉𝑘 𝑉𝑚 𝑔𝑘𝑚 sen 𝜃𝑘𝑚
+
+(2.7)
+(2.8)
+
+As equações 2.7 e 2.8 podem ser descritas em sua forma matricial aplicandose a Primeira Lei de Kirchhoff às barras de estudo. De forma geral, seja "𝐾" o conjunto
+formado pelos elementos de todas as barras "𝑚" adjacentes à barra “𝑘”, incluindo esta
+mesma, obtém a seguinte expressão (MONTICELLI, 1983):
+𝐼𝑘 = ∑ 𝑌𝑘𝑚 𝐸𝑚
+𝑚∈𝐾
+
+(2.9)
+
+Onde, para o conjunto de “𝐾”, "𝑰 " é o vetor das injeções de corrente nas
+barras, "𝑬" o vetor das tensões nodais cujas componentes são fasoriais e a matriz de
+admitância nodal "𝒀", da qual inclui a componente shunt "𝑗𝐵 𝑠ℎ ", representada na
+sequência (MONTICELLI, 1983):
+𝑌𝑘𝑚 = 𝐺𝑘𝑚 + 𝑗𝐵𝑘𝑚
+
+(2.10)
+
+Deste modo, aplicando-se o mesmo princípio descrito em 2.5, obtém-se as
+injeções de potência ativa e reativa representada em sua forma matricial podendo ser
+escrita como (MONTICELLI, 1983):
+
+𝑃𝑘𝑐𝑎𝑙𝑐 (𝜃, 𝑉) = 𝑉𝑘 ∑ 𝑉𝑚 (𝐺𝑘𝑚 cos 𝜃𝑘𝑚 + 𝐵𝑘𝑚 sen 𝜃𝑘𝑚 )
+𝑚∈𝐾
+
+(2.11)
+(2.12)
+
+𝑄𝑘𝑐𝑎𝑙𝑐 (𝜃, 𝑉) = 𝑉𝑘 ∑ 𝑉𝑚 (𝐺𝑘𝑚 sen 𝜃𝑘𝑚 − 𝐵𝑘𝑚 cos 𝜃𝑘𝑚 )
+𝑚∈𝐾
+
+Assim, por definição, quatro variáveis são designadas a cada barra do
+sistema:
+
+26
+
+a)
+
+𝑉𝑘 – Magnitude da tensão nodal (barra k);
+
+b)
+
+𝜃𝑘 – Ângulo da tensão nodal;
+
+c)
+
+𝑃𝑘 – Geração líquida de potência ativa;
+
+d)
+
+𝑄𝑘 – Geração líquida de potência reativa (MONTICELLI, 1983).
+
+Os tipos de barra definem quais variáveis são conhecidas e quais deverão ser
+obtidas com o fluxo de potência, as barras são classificadas em (KUNDUR,1994):
+a)
+
+Barra de Carga (PQ) – As potências ativa e reativa são fornecidas, e,
+como se tratam de cargas, assume-se que as potências não variam
+conforme a tensão nas barras e a magnitude e ângulo de tensão nodal
+são grandezas calculadas;
+
+b)
+
+Barra de Tensão Controlada (PV ou Barra de Geração) – Têm-se os
+dados de potência ativa e de tensão, e, portanto, deve-se calcular a
+potência reativa e o ângulo de fase. Neste caso, deve-se levar em
+consideração os limites de reativo que definem a capacidade da(s)
+unidade(s) geradora(s);
+
+c)
+
+𝜃V (Referência ou Slack) – A magnitude da tensão e o ângulo de fase
+são fornecidos, as potências ativa e reativa são calculadas após a
+convergência do fluxo de potência.
+
+2.4.1 Fluxo de Carga Utilizando o Método de Newton Raphson
+
+As equações 2.11 e 2.12 apresentadas anteriormente são classificadas como
+não-lineares, cabendo a utilização de um dos métodos mais eficazes para a resolução
+das mesmas, o método de Newton Raphson. Ele consiste basicamente da realização
+de iterações para encontrar as variáveis das quais o valor especificado, se anula ou
+se aproxima do valor calculado, sendo descrito abaixo como (MONTICELLI, 1983):
+
+∆𝑃𝑘 = 𝑃𝑘𝑒𝑠𝑝 − 𝑃𝑘𝑐𝑎𝑙𝑐 = 0 (𝑏𝑎𝑟𝑟𝑎𝑠 𝑃𝑉 𝑒 𝑃𝑄)
+
+(2.13)
+
+∆𝑄𝑘 = 𝑄𝑘𝑒𝑠𝑝 − 𝑄𝑘𝑐𝑎𝑙𝑐 = 0 (𝑏𝑎𝑟𝑟𝑎𝑠 𝑃𝑄)
+
+(2.14)
+
+27
+
+Onde o valor especificado inicialmente é definido por:
+𝑒𝑠𝑝
+𝑒𝑠𝑝
+𝑃𝑒𝑠𝑝 = 𝑃𝑔𝑒𝑟
+− 𝑃𝑐𝑎𝑟𝑔𝑎
+𝑒𝑠𝑝
+𝑒𝑠𝑝
+𝑄 𝑒𝑠𝑝 = 𝑄𝑔𝑒𝑟
+− 𝑄𝑐𝑎𝑟𝑔𝑎
+
+(2.15)
+(2.16)
+
+Assim, iniciando-se a descrição do método, considera-se um sistema 𝑛dimensional:
+𝑓(𝑥) = 0
+
+(2.17)
+
+Para encontrar o valor do vetor 𝑥 para o qual a função vetorial se anula,
+devem-se seguir os seguintes passos (MONTICELLI, 1983):
+a)
+
+Iniciar com a contador de iterações (𝑢 = 0), atribuindo um valor inicial
+para a solução 𝑥 (𝑢) = 𝑥 (0) ;
+
+b)
+
+Calcular 𝑓(𝑥 (𝑢) );
+
+c)
+
+Testar a convergência: se |𝑓(𝑥 (𝑢) )| ≤ 𝜀 (onde "𝜀" representa a tolerância
+estipulada inicialmente) o sistema convergiu, caso contrário, ir para o
+passo 4;
+
+d)
+
+Calcular matriz jacobiana 𝐽(𝑥 (𝑢) );
+
+e)
+
+Determinar uma nova solução 𝑥 𝑢+1 através de:
+∆𝑥 𝑢 = −𝐽[𝑥 𝑢 ]−1 𝑓(𝑥 (𝑢) )
+𝑥 𝑢+1 = 𝑥 𝑢 + ∆𝑥 𝑢
+
+f)
+
+(2.18)
+(2.19)
+
+Fazer 𝑢 = 𝑢 + 1 e voltar para o passo 2.
+
+Deste modo, aplicando este método para as equações de fluxo de potência,
+obtém-se a seguinte formulação (MONTICELLI, 1983):
+𝑓(𝑥 𝑢 ) = [
+
+𝑃𝑒𝑠𝑝 𝑘 − 𝑃𝑐𝑎𝑙 𝑘 (𝑉, 𝜃)
+∆𝑃𝑘
+] = [ 𝑒𝑠𝑝
+]
+∆𝑄𝑘
+𝑄 𝑘 − 𝑄 𝑐𝑎𝑙 𝑘 (𝑉, 𝜃)
+
+(2.20)
+
+28
+
+𝜃
+𝑥=[ ]
+𝑉
+𝜕∆𝑷𝑘 𝜕∆𝑷𝑘
+𝜕𝑽 ]
+𝐽(𝑥) = [ 𝜕𝜃
+𝜕∆𝑸𝑘 𝜕∆𝑸𝑘
+𝜕𝜃
+𝜕𝑽
+
+(2.21)
+
+(2.22)
+
+Obtendo a seguinte forma reduzida:
+[
+
+∆𝑃
+∆𝜃
+] = 𝐽−1 [ ]
+∆𝑄
+∆𝑉
+
+(2.23)
+
+E por fim, a atualização dos valores de "𝑉" e "𝜃":
+𝑉 𝑢+1 = 𝑉 + ∆𝑉 𝑢
+𝜃 𝑢+1 = 𝜃 + ∆𝜃 𝑢
+
+(2.24)
+(2.25)
+
+Deve-se considerar que a singularidade da matriz jacobiana 𝐽(𝑥), representa
+o ponto de limite de carga do sistema elétrico analisado no fluxo de carga. Como será
+visto na sequência, isto ocorre quando se utilizam sucessivos acréscimos de carga ao
+sistema considerado, sendo este conhecido como um método de continuação
+utilizando a carga como parâmetro. Do mesmo modo, embora não seja possível
+determinar o ponto de colapso de tensão através da matriz 𝐽(𝑥), será apresentado um
+método de continuação utilizando uma tensão eficaz como parâmetro, bem como as
+considerações realizadas a partir desta matriz para a determinação dos resultados
+(VAN CUTSEM; VOURNAS, 1998).
+
+2.5 MÉTODO DE CONTINUAÇÃO: PARÂMETROS DE CARGA E TENSÃO
+
+Uma das formas de análise de estabilidade de tensão considera submeter um
+sistema a pequenos desvios dos parâmetros de carga e/ou tensão. Estes são usados
+na determinação do limite de capacidade de carga, sendo possível prever o
+comportamento de um sistema com a obtenção da margem de estabilidade de tensão
+
+29
+
+(MET), termo este definido pela distância entre o ponto de operação e o ponto de
+colapso correspondente ao limite operativo do fluxo de carga nas linhas (OLIVEIRA,
+2015; JUSTI, 2017).
+O método mais utilizado para esta análise é o chamado fluxo de potência
+continuado. Este utiliza-se dos resultados das equações de fluxo de potência usual,
+mas com a ressalva de que a cada convergência será dado um incremento de carga
+ou um decaimento de tensão (VAN CUTSEM; VOURNAS, 1998).
+A utilização da carga como parâmetro de continuação considera aumentos
+graduais no carregamento do sistema, seja em ∆𝑃 ou ∆𝑄. O parâmetro "∆𝜆" é utilizado
+para definir este aumento gradual e a cada incremento de carga nas barras 𝑃𝑄, um
+ponto é traçado na curva "𝜆𝑉" ou “𝑃𝑉” (VAN CUTSEM; VOURNAS, 1998).
+Por outro lado, a utilização da tensão como parâmetro de continuação
+consiste em realizar o decremento de uma tensão eficaz "∆𝑉", normalmente atribuído
+à barra mais sensível do sistema. A curva "𝜆𝑉" é obtida com a continuação definida
+pelo decremento fazendo "𝑉𝑖 = 𝑉𝑖 − ∆𝑉” e com a resolução do sistema descrito em
+2.24 a ser resolvido a cada iteração (JUSTI, 2017):
+
+[𝐽(𝑥)
+
+−
+
+𝑒𝑖
+
+𝜕 𝑓(𝑥, 𝜆)
+∆𝑥
+𝑓(𝑥, 𝜆)
+𝜕𝜆 ] . [∆𝜆 ] = [ 0 ]
+0
+
+(2.26)
+
+Este sistema consiste no acréscimo da nova variável "𝜆" à matriz Jacobiana
+tradicional, onde o elemento " −
+
+𝜕 𝑓(𝑥,𝜆)
+𝜕𝜆
+
+" corresponde às derivadas parciais de 𝑓(𝑥, 𝜆)
+
+em relação à "𝜆". Assim, como o número de incógnitas é maior em relação ao de
+equações, adiciona-se uma linha à nova matriz Jacobiana com o vetor "𝑒𝑖 ", composto
+por valores nulos exceto pela 𝑖-ésima coluna da variável escolhida como parâmetro
+de continuação, que no caso de decremento de tensão recebe “-1”. Este novo conjunto
+de equações permite que mesmo após a singularidade de "𝐽(𝑥)", o fluxo de potência
+possa ser calculado, uma vez que o parâmetro "𝜆" passa a ser uma variável (VAN
+CUTSEM; VOURNAS, 1998).
+
+30
+
+Após a solução do sistema linear, as variáveis "𝑥" , conforme equação 2.26,
+são atualizadas assim como o parâmetro de carga "𝜆". Este processo continua até a
+convergência, interrompendo o processo quando o decremento mínimo de tensão
+definido inicialmente é atingido (JUSTI, 2017).
+A figura 4 apresenta a curva "𝜆𝑉" referida anteriormente. Analisando-a
+detalhadamente, iniciando com o ponto “P0”, este indica o estado inicial do sistema,
+sem a variação de carga. Tem-se em seguida o ponto “P1”, que é o resultado do
+incremento dado por ∆𝜆1. O valor deste incremento é reduzido para a obtenção do
+ponto “P2” com ∆𝜆2, uma vez que não haveria convergência com a utilização do
+mesmo incremento ∆𝜆1 . Assim, são realizados diversos cálculos de fluxo de potência
+até que o incremento seja mínimo, como em ∆𝜆4. Cabe salientar que o ponto de
+colapso não é encontrado utilizando este parâmetro de continuação visto que não
+haverá convergência no ponto de máximo carregamento pelo fato da matriz Jacobiana
+ser singular para este caso.
+Do mesmo modo como visto no parágrafo anterior, o parâmetro de
+continuação utilizando uma tensão eficaz pode ser calculado através da matriz
+jacobiana expandida, equação 2.24, partindo-se de “P0”. Entretanto, a figura 4
+apresenta a utilização deste método a partir do ponto “P4”, ponto no qual a resolução
+do fluxo de potência havia parado quando da utilização do parâmetro de carga. A partir
+deste, atribui-se um decremento de tensão "∆𝑉" associado à barra mais sensível do
+sistema, e, com a resolução do fluxo de potência, obtém-se um valor de carregamento
+associado. A resolução a partir deste método permite a obtenção da parte inferior da
+curva "𝜆𝑉" onde o sistema encontra-se instável.
+
+31
+
+FIGURA 4 - Esquema de Fluxo de Potência utilizando a carga e tensão como parâmetro de
+continuação.
+
+V
+P0
+
+P1
+
+P2
+
+P3
+V4
+
+V
+
+Vcrít.
+
+V
+
+V5
+
+V
+
+V6
+
+P4
+Pmáx
+P5
+P6
+
+Fonte: Autoria própria.
+
+Na seção seguinte, serão apresentadas as principais características dos
+geradores síncronos e sua relação com o estudo de estabilidade de tensão, uma vez
+que a ação destes equipamentos interfere diretamente na margem de carregamento
+do sistema.
+
+2.6 GERADORES SÍNCRONOS E ESTABILIDADE DE TENSÃO
+
+As ocorrências de instabilidade de tensão ocorrem principalmente devido ao
+desequilíbrio na transferência de potência do gerador para a carga, o que causa o
+redespacho do fluxo e perdas de reativo (TAYLOR,1994). Deste modo, para satisfazer
+
+32
+
+os critérios de um sistema de potência, a tensão nos terminais de todos os
+equipamentos deve estar dentro dos limites estipulados e as perdas nos enrolamentos
+devem ser consideradas. O problema em se manter a tensão nestes limites consiste
+no fato de que inúmeras são as fontes geradoras para os diversos tipos de carga
+existentes (ANDERSON; FOUAD, 2003).
+Uma ferramenta que auxilia na verificação das características nominais de um
+gerador síncrono é a chamada “curva de capabilidade” descrita pela figura 5. Com ela,
+é possível obter graficamente os limites pelos quais o equipamento ainda pode ser
+considerado como gerador. Os principais limites a serem considerados são definidos
+pelo limite térmico do enrolamento do rotor; limite térmico do enrolamento estatórico
+limite devido à turbina acoplada ao eixo do gerador e os limites de sobre/subexcitação
+(CHAPMAN, 2013).
+FIGURA 5 - Curva de capabilidade de um gerador síncrono.
+
+Limite de Corrente
+Rotórica
+
+P (W)
+Limite de Corrente
+Estatórica
+
+Limite de Potência
+da Turbina
+
+Fonte: Chapman (2013), adaptado.
+
+33
+
+A elevação da temperatura do enrolamento do estator está diretamente ligada
+às perdas Joule proporcionais ao quadrado da corrente da carga. Na curva de
+capabilidade, este limite é representado por um círculo centrado na origem, P=0 e
+Q=0, com raio igual a 3. 𝑉. 𝐼𝑚á𝑥 (𝑉𝐴), onde 𝐼𝑚á𝑥 representa a corrente estatórica
+máxima e 𝑉 a tensão de saída monofásica do gerador (CHAPMAN, 2013).
+Do mesmo modo, Chapman (2013) afirma que a elevação da temperatura do
+enrolamento do rotor está ligada às perdas Joule proporcionais ao quadrado da
+corrente de excitação. Na curva de capabilidade, este limite é representado por um
+círculo proporcional à corrente de excitação, mas o mesmo é centrado em:
+
+3(𝑉𝜙 )
+𝑃 =0𝑒𝑄 =−
+𝑋𝑠
+
+2
+
+(2.27)
+
+e raio (𝑟) igual a:
+𝑟=
+
+3(𝑉𝜙 )𝐸𝐴
+𝑋𝑠
+
+(2.28)
+
+Onde 𝐸𝐴 representa a tensão interna do gerador e 𝑋𝑠 a reatância síncrona do
+mesmo.
+Os limites de sobre e subexcitação referem-se, respectivamente, ao limite de
+fornecimento e absorção de reativo no sistema. Por fim, o limite devido à turbina
+acoplada ao eixo corresponde à potência ativa fornecida à mesma, assim, este limite
+está relacionado com o limite mecânico de quanto à turbina pode suportar
+(CHAPMAN, 2013).
+
+2.6.1 Violação dos Limites de Potência Ativa e Reativa
+
+Na análise de fluxo de carga, quando os limites de potência ativa e reativa não
+são considerados, assume-se que o colapso de tensão ocorrerá simplesmente pela
+sobrecarga do sistema de transmissão, e, sendo assim, as unidades geradoras têm
+capacidade ilimitada em fornecer potência reativa para as cargas além de respeitar as
+
+34
+
+restrições de operação (MANSOUR, 2013). Como este é um caso ideal, cabe
+considerar na prática os limites de um gerador síncrono obtidos através da curva de
+capabilidade, assim é possível observar o comportamento do sistema diante às
+limitações das unidades geradoras.
+Quando são considerados os limites de potência reativa nas barras de
+geração e o limite máximo é atingido, a tensão correspondente à esta barra tende a
+diminuir pois não há potência reativa suficiente para mantê-la. Assim, a barra do tipo
+𝑃𝑉 se torna uma 𝑃𝑄, fixando o valor das injeções de potência reativa e permitindo que
+a tensão eficaz na barra possa ser considerada como uma variável. Portanto, ao final
+de cada iteração a potência reativa deve ser calculada para a verificação da
+ultrapassagem do limite estipulado (MONTICELLI, 1983).
+Os problemas envolvendo a ultrapassagem do limite de potência ativa de um
+gerador síncrono estão diretamente ligados à estabilidade de frequência, isto porque,
+se a demanda for maior do que toda a capacidade de geração, ocorre a diminuição
+da velocidade dos geradores e consequentemente a diminuição da frequência
+(OLIVEIRA, 2005).
+Assim, a ultrapassagem dos limites de potência ativa interferem diretamente no
+fator de participação das unidades geradoras, isto significa dizer que quando uma
+barra composta por um fator de participação de geração ultrapassa o seu limite, este
+fator passa a ser zero e seu valor terá que ser redistribuído às demais barras do
+sistema (JUSTI, 2017). Este conceito de fator de participação referido anteriormente
+será abordado na sequência.
+
+2.7
+
+FATOR DE PARTICIPAÇÃO DE CARGA E GERAÇÃO
+
+Como a relação entre carga e geração de um sistema elétrico de potência está
+em constante mudança e com intuito de obter uma margem de estabilidade de tensão
+mais próxima às condições reais de operação, utiliza-se o parâmetro de crescimento
+de carga (𝜆) aliado ao redespacho de geração a cada novo fluxo de potência. Tais
+parâmetros estão diretamente ligados aos fatores de participação de carga e de
+geração de cada barra do sistema. Estes definem a porcentagem de atuação das
+
+35
+
+unidades geradoras em virtude do crescimento de carga e contribuem na obtenção de
+uma margem segura de tensão (MANSOUR, 2013).
+Segundo JUSTI (2017), os fatores de participação podem ser de dois tipos:
+fator de participação de geração e fator de participação de carga. O primeiro é
+associado ao quanto cada gerador contribui para o sistema e o segundo ao quanto
+cada barra de carga contribui para o consumo de potência ativa ou reativa do sistema.
+A relação entre carga e geração utilizando-se dos fatores de participação pode
+ser explorada através das descrições feitas por MANSOUR (2013). Seja o incremento
+de potência ativa do 𝑖-ésimo gerador definido por:
+
+∆𝑃𝐺𝑒𝑟𝑖 = 𝑓𝑝𝑔𝑖 ∆𝑃𝐶𝑎𝑟𝑔𝑎𝑇𝑜𝑡𝑎𝑙
+
+(2.29)
+
+Analogamente, para o crescimento de carga em cada barra do sistema:
+
+∆𝑃𝐶𝑎𝑟𝑔𝑎𝑖 = 𝑓𝑝𝐶𝑎𝑟𝑔𝑎𝑖 ∆𝑃𝐶𝑎𝑟𝑔𝑎𝑇𝑜𝑡𝑎𝑙
+
+(2.30)
+
+Onde:
+a) ∆𝑃𝐺𝑒𝑟𝑖 : Variação da parcela de geração de potência ativa na 𝑖-ésima barra;
+b) 𝑓𝑝𝑔𝑖 : Fator de participação de geração da 𝑖-ésima barra do SEP;
+c) ∆𝑃𝐶𝑎𝑟𝑔𝑎𝑖 : Variação da parcela de potência ativa da 𝑖-ésima barra
+consumida pela carga;
+d) 𝑓𝑝𝐶𝑎𝑟𝑔𝑎𝑖 : Fator de participação de carga da 𝑖-ésima barra do SEP;
+e) ∆𝑃𝐶𝑎𝑟𝑔𝑎𝑇𝑜𝑡𝑎𝑙 : Variação total de potência ativa nas barras de carga 𝑃𝑄 e 𝑃𝑉
+(se possuir carga).
+A variação de potência ativa nas barras de carga representa a diferença entre
+a carga incrementada e a carga base (referência) Este incremento de carga
+representa os sucessivos aumentos de carga a cada fluxo de potência, portanto, cabe
+expressar as equações descritas anteriormente em função do parâmetro de
+crescimento de carga "𝜆" em cada barra do SEP (MANSOUR, 2013):
+𝑃𝐺𝑒𝑟𝑖 (𝜆) = 𝑃𝐺𝑒𝑟𝑖 (𝜆0 ) + 𝑓𝑝𝑔𝑖 [𝑃𝐶𝑎𝑟𝑔𝑎𝑇𝑜𝑡𝑎𝑙 (𝜆) − 𝑃𝐶𝑎𝑟𝑔𝑎𝑇𝑜𝑡𝑎𝑙 (𝜆0 )]
+
+(2.31)
+
+36
+
+𝑃𝐶𝑎𝑟𝑔𝑎𝑖 (𝜆) = 𝑃𝐶𝑎𝑟𝑔𝑎𝑖 (𝜆0 ) + 𝑓𝑝𝐶𝑎𝑟𝑔𝑎 𝑖 [𝑃𝐶𝑎𝑟𝑔𝑎𝑇𝑜𝑡𝑎𝑙 (𝜆) − 𝑃𝐶𝑎𝑟𝑔𝑎𝑇𝑜𝑡𝑎𝑙 (𝜆0 )]
+
+(2.32)
+
+O ONS (2018) estabelece uma diretriz que durante o processo de incremento
+de carga, o fator de potência deve permanecer constante, deste modo, como afirma
+Justi (2017), tem-se que para o incremento de potência reativa no sistema:
+
+𝑄𝐶𝑎𝑟𝑔𝑎𝑖 (𝜆) = 𝑄𝐶𝑎𝑟𝑔𝑎𝑖 (𝜆0 )
+
+𝑃𝐶𝑎𝑟𝑔𝑎𝑖 (𝜆)
+𝑃𝐶𝑎𝑟𝑔𝑎𝑖 (𝜆0 )
+
+(2.33)
+
+Onde:
+a)
+
+𝑄𝐶𝑎𝑟𝑔𝑎𝑖 (𝜆) – Potência reativa da 𝑖-ésima barra do SEP consumida pela
+
+carga;
+b)
+
+𝑄𝐶𝑎𝑟𝑔𝑎𝑖 (𝜆0 ) – Potência reativa da 𝑖-ésima barra do SEP consumida pela
+
+carga, antes do incremento de carga;
+c)
+
+𝑃𝐶𝑎𝑟𝑔𝑎𝑖 (𝜆) – Potência ativa da 𝑖-ésima barra do SEP consumida pela
+
+carga;
+d)
+
+𝑃𝐶𝑎𝑟𝑔𝑎𝑖 (𝜆0 ) – Potência ativa consumida pela carga no caso base, antes
+
+do incremento de carga.
+Sendo assim, obtém-se as potências ativa e reativa esperadas em cada barra
+do sistema em função do parâmetro de crescimento de carga:
+
+𝑃𝑒𝑠𝑝𝑖 (𝜆) = 𝑃𝑔𝑒𝑟𝑖 (𝜆) − 𝑃𝐶𝑎𝑟𝑔𝑎𝑖 (𝜆)
+
+(2.34)
+
+𝑄𝑒𝑠𝑝𝑖 (𝜆) = 𝑄𝑔𝑒𝑟𝑖 (𝜆) − 𝑄𝐶𝑎𝑟𝑔𝑎𝑖 (𝜆)
+
+(2.35)
+
+Deste modo, pode-se rearranjar a equação 2.20 em função deste mesmo parâmetro:
+
+𝑓(𝑥, 𝜆) = 𝑓(𝜃, 𝑉, 𝜆) = [
+
+𝑃𝑒𝑠𝑝 (𝜆) − 𝑃𝑐𝑎𝑙 (𝑉, 𝜃)
+∆𝑃(𝜃, 𝑉, 𝜆)
+] = [ 𝑒𝑠𝑝
+]
+∆𝑄(𝜃, 𝑉, 𝜆)
+𝑄 (𝜆) − 𝑄 𝑐𝑎𝑙 (𝑉, 𝜃)
+
+(2.36)
+
+37
+
+2.8
+
+CRITÉRIOS DE SEGURANÇA DE TENSÃO
+
+É de responsabilidade do ONS a coordenação e controle da operação de
+geração e transmissão de energia elétrica sob a fiscalização e regulação da Agência
+Nacional de Energia Elétrica (ANEEL). Sendo um dos objetos de estudo deste
+trabalho a determinação dos limites de tensão alinhados ao que determinam estes
+órgãos regulamentadores, é de grande importância descrever os critérios e métodos
+de avaliação de segurança de tensão.
+Neste sentido, uma das maneiras de se garantir a confiabilidade de um
+sistema de potência pode ser determinada através da análise estática de segurança,
+sendo esta referida à verificação da condição do sistema pré-contingências e póscontingências (KUNDUR, 2004).
+
+2.8.1 Definição dos Limites de Segurança
+
+A partir da margem de estabilidade de tensão já obtida, podem-se determinar
+os limites de segurança, sendo estes referentes ao limite pelo qual um sistema de
+potência permanece estável mesmo com a consideração de contingências (VAN
+CUTSEM; VOURNAS,1998).
+Segundo Van Cutsem (2000), existem dois tipos de limites de segurança:
+a) Limite de Capacidade de Carga Pós-Contingência (LCCPC), determina o
+quanto um sistema pode ser estressado após a ocorrência de uma
+determinada contingência. Conforme ilustra a figura 6, pode-se observar a
+diferença entre as margens de carregamento antes e após a ocorrência de
+uma contingência;
+
+38
+
+FIGURA 6 – Limite de Capacidade de Carga Pós-Contingência (LCCPC).
+
+Pré-Contingência
+
+Pós-Contingência
+
+P
+Máximo Carregamento
+Pós-Contingência
+(LCCPC)
+
+Máximo Carregamento
+Pré-Contingência
+
+Fonte: Van Cutsem; Vournas (1998), adaptado.
+
+b) Limite de Operação Segura (LOS), corresponde a quanto um sistema pode
+ser estressado de modo que não ocorra instabilidade mesmo após
+contingências. Considerando um conjunto de contingências em um
+determinado SEP, o LOS também pode ser definido como o menor valor
+encontrado de LCCPCs.
+
+39
+
+FIGURA 7 – Determinação do Limite de Operação Segura (LOS).
+
+Pré-Contingência
+Contingência #1
+Contingência #2
+Contingência #3
+
+V
+
+C'
+
+A
+B
+
+O
+
+C
+
+P
+Limite de
+Operação Segura
+(LOS)
+
+Máximo
+Carregamento
+Pré-Contingência
+
+Fonte: Autoria própria.
+
+Assim sendo, o ponto O na figura 7 representa o ponto de máximo
+carregamento de um determinado SEP pré-contingência, as demais curvas
+representam a aplicação de contingências específicas, obtendo assim os LCCPCs
+para cada situação (A, B e C). A obtenção do LOS, ponto C’, é possível após a
+determinação do menor LCCPC dentro deste conjunto de contingências analisado
+(VAN CUTSEM; VOURNAS, 1998). Cabe destacar que o LOS pode ser aprimorado
+com a utilização de ações de controle pós-contingência, como será visto na
+sequência.
+Ao contrário do LCCPC, o LOS considerando ações de controle refere-se à
+situação atual do sistema considerando três tipos de informações: o nível de
+sobrecarga do sistema, as ações de controle do operador e o controle automático póscontingência. Dentre estas ações pode-se citar: compensação shunt, controle da
+tensão na saída dos geradores, da tensão secundária em transformadores, e, por fim,
+a redistribuição ou até mesmo o corte de cargas (VAN CUTSEM; VOURNAS, 1998).
+
+40
+
+Assim sendo, pela figura 8, considerando ações ideais de operação, o ponto
+A define o ponto de operação de um sistema que passou por uma contingência, porém
+não houve ações de controle. Quando ações de controle são implementadas, tem-se
+a curva “𝑃𝑉” com o ponto de operação A’. O mesmo ocorre para outras contingências,
+até a obtenção do LOS, a exemplo, tem-se o ponto B e o ponto B’, tal qual este último
+determina uma condição de operação segura do sistema, onde este permanecerá
+estável mesmo após a ocorrência das contingências a qual foi submetido (VAN
+CUTSEM; VOURNAS, 1998).
+FIGURA 8 - Limite de Operação Segura (LOS) com ações de controle.
+
+V
+
+LIMITE DE OPERAÇÃO SEGURA
+"LOS"
+
+A'
+B'
+A
+
+B
+
+P
+Antes das Ações Pós-Contingência
+Após as Ações Pós-Contingência
+
+Fonte: Van Cutsem; Vournas (1998), adaptado.
+
+Segundo Van Cutsem e Vournas (1998), uma das formas para a determinação
+do LOS, é a utilização do método chamado “Pesquisa Binária”, onde consiste em criar
+progressivamente um intervalo de estresse através da MET já obtida, sendo estável o
+ponto inicial. Na sequência, realiza-se uma divisão pela metade deste intervalo. Se, a
+partir do ponto central é obtida uma resposta estável, aumenta-se o intervalo, do
+contrário, reduz-se novamente à metade. Naturalmente, se a resposta do último ponto
+do intervalo definido é estável, tem-se que o sistema é estável mesmo para uma
+determinada contingência (VAN CUTSEM; VOURNAS, 1998).
+
+41
+
+Para a análise de inúmeras contingências na determinação do limite de
+operação segura, ocorre o mesmo princípio descrito anteriormente, com a exceção de
+que o procedimento é realizado com todas as contingências ao mesmo tempo, e, se
+observado que ao menos em uma delas ocorreu instabilidade, as demais estáveis são
+retiradas, diminuindo o tempo de processamento da análise (VAN CUTSEM;
+VOURNAS, 1998).
+
+2.8.2 Níveis de Tensão
+
+Um dos procedimentos de rede instituídos pelo ONS, “Submódulo 23.3 –
+Diretrizes e critérios para estudos elétricos”, item 11.5 (ONS, 2018), estabelece que
+um sistema elétrico é considerado seguro em relação à tensão quando, para uma
+dada condição operativa, a Margem de Estabilidade de Tensão e os níveis de tensão
+pré-contingência e pós–contingência encontram-se em conformidade com os critérios
+estabelecidos, critérios dos quais são citados na sequência.
+Segundo o ONS (2018), as METs para os estudos de ampliações e reforços
+e de planejamento da operação são de 7% com rede completa e 4% com rede
+incompleta. Em tempo real, a meta é de 4%.
+Por outro lado, para os níveis de tensão entre fases admissíveis a 60Hz a
+serem considerados nos estudos elétricos para as condições de operação normal e
+de emergência são os apresentados pela tabela 2. Cabe destacar que tais limites são
+diferentes para quando é necessária uma ação de recomposição do sistema. Os
+valores de tensão são descritos na sua forma eficaz e em “pu” tendo como base a
+tensão nominal de operação (ONS, 2018).
+
+42
+
+TABELA 1 - Níveis de Tensão estabelecidos pelo ONS.
+
+Tensão Nominal de
+Operação
+(kV)
+< 230
+230
+345
+440
+500
+525
+765
+
+Condição Operativa
+Normal
+(kV)
+218 a 242
+328 a 362
+418 a 460
+500 a 550
+500 a 550
+690 a 800
+
+(pu)
+0,95 a 1,050
+0,95 a 1,050
+0,95 a 1,050
+0,95 a 1,046
+1,00 a 1,100
+0,95 a 1,050
+0,90 a 1,046
+
+Condição Operativa de
+Emergência
+(kV)
+207 a 242
+311 a 362
+396 a 460
+475 a 550
+475 a 550
+690 a 800
+
+(pu)
+0,90 a 1,050
+0,90 a 1,050
+0,90 a 1,050
+0,90 a 1,046
+0,95 a 1,100
+0,90 a 1,050
+0,90 a 1,046
+
+Fonte: ONS (2018).
+
+O ONS (2018) ainda define que, para os estudos de ampliações e reforços,
+quando da simulação de contingências, deve-se observar que variações acima de
+10% da tensão nominal de operação nas barras de conexão não são permitidas,
+considerando o momento imediatamente após a contingência.
+Assim, pretende-se com este trabalho, estimar os LCCPCs para contingências
+de linha de transmissão e unidades geradoras, obter o LOS para os sistemas
+analisados e ainda identificar a faixa operativa de tensão para os SEPs de 14, 30 e 57
+barras utilizando-se dos valores contidos na tabela 1. Como ilustra figura 9, através
+dos critérios de segurança de tensão citados anteriormente, será possível realizar um
+comparativo entre a margem de máximo carregamento do sistema e a faixa operativa
+de tensão.
+
+43
+
+FIGURA 9 – Faixa operativa de acordo com os limites de tensão.
+
+V
+Vmáx
+
+Vmín
+
+Faixa Operativa de Tensão
+
+P
+Ponto de Máximo
+Carregamento
+
+Fonte: Autoria própria.
+
+Assim, neste capítulo foram apresentadas as definições de estabilidade e
+segurança de tensão para os SEPs, estas possuem um papel primordial na
+implementação do cálculo do fluxo de potência e entendimento do problema. No
+próximo capítulo, será explanada a metodologia adotada para a análise, bem como o
+funcionamento do algoritmo utilizado para a obtenção dos resultados.
+
+44
+
+3
+
+METODOLOGIA DE ANÁLISE
+
+A fim de que a análise de segurança de tensão possa ser realizada, são
+apresentados neste capítulo os algoritmos implementados para o cálculo do fluxo de
+potência, dos quais referem-se ao cálculo do FPC considerando a carga e tensão
+como os parâmetros de continuação e ao algoritmo que considera a faixa operativa
+de tensão determinada por ONS (2018).
+Além disso, serão descritas as demais etapas de análise que se utilizam dos
+algoritmos apresentados e que seguem uma metodologia semelhante à apresentada
+em Justi (2017).
+
+3.1
+
+ALGORITMO
+
+FPC
+
+CONSIDERANDO
+
+CARGA
+
+E
+
+TENSÃO
+
+COMO
+
+PARÂMETROS DE CONTINUAÇÃO
+
+O algoritmo do FPC segue a lógica do fluxo de potência nas barras considerando
+o método de Newton-Raphson para se chegar a uma solução aproximada. Com os
+parâmetros iniciais estipulados, realizam-se as iterações até a convergência do
+sistema não-linear, de acordo com a tolerância atribuída no início.
+Após a primeira convergência, atualizam-se os valores de potência ativa e
+reativa pelo aumento de carga, definido por um incremento a cada convergência.
+Quando verificada a ultrapassagem do incremento mínimo de carga, o parâmetro de
+continuação passa a ser definido pelo decaimento de tensão, onde é possível obter o
+ponto de colapso e a parte instável do sistema. Este processo termina quando se
+verifica um valor inferior ao de decremento de tensão mínimo, estipulado inicialmente.
+No processo anterior, já são considerados os limites de potência ativa e reativa
+para as barras de geração. Deste modo, se uma barra 𝑃𝑉 tiver seu limite ultrapassado,
+esta passará a ser uma barra 𝑃𝑄, onde o seu limite de potência reativa é fixado.
+Quando se trata da ultrapassagem do limite de potência ativa, o tipo da barra não é
+alterado, mas caso haja um fator de participação atribuído, este passará a ser nulo e
+outras barras de geração 𝜃𝑉 e 𝑃𝑉 devem suprir esta falta.
+A figura 10 ilustra este processo conforme descrito anteriormente:
+
+45
+
+FIGURA 10 - Fluxograma do algoritmo de FPC considerando a carga e a tensão como
+parâmetros de continuação.
+Início
+
+Leitura de dados
+
+Cálculo das potências P_esp e Q_esp
+
+Cálculo de P e Q
+Resolução do sistema:
+
+Não
+Convergiu?
+
+Diminui o valor de
+
+λ
+
+Sim
+
+Salva os valores de V e θ
+Verifica se
+λ
+λmin
+Atualiza λ
+λ=λ λ
+
+Sim
+
+Não
+
+Atualiza V
+V = V+ V
+Atualiza P_esp e Q_esp:
+Cálculo de P e Q
+
+Resolução do sistema:
+
+Não
+Convergiu?
+
+Diminui o valor de
+
+V
+
+Sim
+Salva os valores de V e θ
+Verifica se
+V < Vmin
+Atualiza V
+V = V+ V
+
+Atualiza P_esp e Q_esp:
+
+Fonte: JUSTI (2017).
+
+Sim
+
+Não
+
+Início
+
+46
+
+3.2
+
+ALGORITMO DE FPC CONSIDERANDO A FAIXA OPERATIVA DE TENSÃO
+O algoritmo de FPC que considera uma faixa operativa de tensão, é
+
+implementado com a realização de uma validação da tensão nas n-barras após cada
+convergência do método de Newton-Raphson. Esta validação considera os valores
+contidos na tabela 2, de acordo com o consta no procedimento de rede 23.3 em ONS
+(2018).
+Do mesmo modo, este algoritmo contempla a análise dos limites relativos à
+capacidade de geração, contingências relacionadas a perdas de linhas de
+transmissão, perdas de unidades geradoras e ainda, a inserção de métodos de
+controle quando verificada a ultrapassagem do limite inferior de tensão das n-barras.
+São utilizados dois métodos de controle cadenciados após a verificação da
+ultrapassagem do limite inferior da tensão em determinada barra dos quais:
+a) Mudança dos TAPs – aumento da tensão disponível no secundário dos
+transformadores do sistema após o ajuste dos TAPs, estes ajustes são
+realizados de forma gradual, através de “steps” onde a cada verificação de
+ultrapassagem do limite inferior de tensão, diminui-se1 o valor do TAP em
+um step até a verificação do limite máximo de TAP do transformador;
+
+b) Banco de Capacitores (Compensação shunt): Quando os limites dos
+transformadores atingem seus valores máximos, o controle do limite
+inferior de tensão é realizado através da inserção de bancos de
+capacitores nas barras onde ocorre a ultrapassagem deste limite, se
+houver disponibilidade. Assim, o banco de capacitor é inserido por meio de
+dois estágios, quando há a verificação da violação de tensão na referida
+barra. Se verificada novamente a ultrapassagem do limite inferior de
+tensão e não houver mais disponibilidade de banco de capacitores em
+determinada barra, o controle é realizado para a segunda barra de maior
+violação e assim sucessivamente, até o momento em que todos os
+recursos de controle de tensão do sistema estejam sendo utilizados.
+
+1
+
+No banco de dados de linhas e transformadores, a relação de TAP é inversa, assim como apresentada
+em MONTICELLI (1983). Por exemplo, se um dado de TAP é igual a 0,950 pu, o mesmo corresponde
+à 1,0526 pu na modelagem de um determinado SEP.
+
+47
+
+Cabe salientar que quando tais formas de controle de tensão são acionadas,
+o incremento de carga não é alterado, de tal forma que o FPC continue a partir do
+incremento onde houve a violação de um limite de tensão das n-barras.
+A figura 11 apresenta o fluxograma com base no algoritmo apresentado
+FIGURA 11 - Fluxograma do algoritmo de determinação da margem de
+operação de tensão.
+
+FPC
+
+Con vergiu.
+Obtém valores de V, Θ
+e l.
+
+Verifica tensão:
+V < Vmin?
+
+N
+
+Continua execução do
+FPC: Atualiza l.
+
+S
+Ações de controle
+
+Ajuste dos TAPs
+extrapolou?
+
+N
+Decrementa o TAP d os
+trafos em um step.
+
+S
+
+Ajuste shunt
+extrapolou?
+
+S
+
+N
+
+1º estágio de Bsh?
+
+N
+
+2º estágio de Bsh.
+
+S
+
+Aplicação de ajuste d e
+compens ação shunt na
+maior barra de violação
+de tensão.
+
+Fonte: Autoria própria.
+
+48
+
+3.3 ETAPAS DE ANÁLISE
+
+Serão enunciadas nesta seção as etapas de análise para os sistemas de 14,
+30 e 57 barras. Cabe ressaltar que os limites da faixa operativa de tensão serão
+explanados em todas as etapas, a fim de que se possa analisar em que momento já
+existe a violação.
+a) Etapa 1: Análise do Caso Base - Esta etapa consiste na análise dos gráficos
+de 𝜆𝑉, 𝑃𝑔𝑒𝑟 𝑒 𝑄𝑔𝑒𝑟 apresentando-se resultados que consideram os limites de
+potência ativa e potência reativa das barras de geração;
+b) Etapa 2: Análise do Caso Base com Ações de Controle de Tensão - Consiste
+na análise dos gráficos de 𝜆𝑉, 𝑃𝑔𝑒𝑟 𝑒 𝑄𝑔𝑒𝑟 considerando-se a implementação
+das ações de controle apresentadas no algoritmo da seção 3.2;
+c) Etapa 3: Análise de Contingências de Linhas de Transmissão – Consiste na
+obtenção do LOS através dos LCCPCs considerando as contingências (critério
+n-1) de linhas de transmissão, utilizando-se do caso da etapa 2;
+d) Etapa 4: Análise de Contingências de Unidades Geradoras - Consiste na
+obtenção do LOS através dos LCCPCs considerando as contingências (critério
+n-1) de unidades geradoras, utilizando-se do caso da etapa 2.
+
+Uma vez enunciada a metodologia a ser utilizada na análise, no próximo
+capítulo serão apresentados os resultados obtidos com a aplicação da execução dos
+algoritmos, alocados em suas respectivas etapas.
+
+49
+
+4
+
+RESULTADOS
+
+Neste capítulo serão exibidos os resultados obtidos pela implementação da
+metodologia apresentada no capítulo anterior. Os dados dos sistemas elétricos de 14,
+30 e 57 barras utilizados para a aplicação da metodologia estão apresentados,
+respectivamente, nos anexos A, B e C.
+Em todos os resultados, considera-se para a análise dos sistemas uma faixa
+operativa de tensão entre 0,95 pu (tensão mínima) e 1,05 pu (tensão máxima), que,
+de acordo com a tabela 1 apresentada na subseção 2.8.2 deste trabalho, corresponde
+à uma “condição operativa normal” para tensões de até 345 kV nas barras.
+Originalmente, os sistemas de 14, 30 e 57 barras do IEEE possuem a maior tensão
+nominal no valor de 132 kV nas barras, e, ainda que efetuou-se a modificação destes
+sistemas para a análise neste trabalho, manteve-se a faixa operativa de tensão entre
+0,95 pu e 1,05 pu.
+
+4.1 RESULTADOS DO SISTEMA DE 14 BARRAS
+
+A figura 12 ilustra a topologia do sistema IEEE 14 barras:
+
+50
+
+FIGURA 12 – Sistema de 14 Barras.
+
+Fonte: BELATI (2003).
+
+4.1.1 Etapa 1: Análise do Caso Base
+
+Utilizando-se do algoritmo de FPC para o sistema de 14 barras, obtiveramse os seguintes gráficos apresentados na figura 13:
+
+51
+
+FIGURA 13 – Curvas 𝝀𝑽, 𝝀𝑷𝒈𝒆𝒓 e 𝝀𝑸𝒈𝒆𝒓 para o sistema de 14 barras.
+
+Fonte: Autoria própria.
+
+Estão representadas no gráfico 𝜆𝑉 da figura 13 a barra slack, as barras de
+geração 𝑃𝑉, e as barras de carga 𝑃𝑄 consideradas mais sensíveis para este sistema.
+Do mesmo modo, delimitou-se a faixa operativa de tensão entre 0,95 pu e 1,05 pu. Na
+mesma figura, apresentam-se os gráficos de 𝜆𝑃𝑔𝑒𝑟 e 𝜆𝑄𝑔𝑒𝑟 que correspondem às
+variações de potência ativa e reativa nas barras de geração, respectivamente.
+Analisando-se a figura 13, identifica-se no gráfico de 𝜆𝑉 a transição das barras
+𝑃𝑉 para 𝑃𝑄 uma vez que foram extrapolados os limites de reativo das barras com o
+incremento de carga. Através do gráfico de 𝜆𝑄𝑔𝑒𝑟 , observa-se quando os limites de
+reativo das barras 𝑃𝑉 são atingidos, a exemplo, as barras 8 e 2, tornam-se barras 𝑃𝑄
+em aproximadamente 𝜆 = 1,300. Assim, identifica-se pelo gráfico de 𝜆𝑄𝑔𝑒𝑟 o momento
+em que a barra slack tenta suprir tais faltas de reativo.
+De maneira semelhante, observa-se pelo gráfico de geração de potência
+ativa 𝜆𝑃𝑔𝑒𝑟 , que, conforme ocorre o incremento de carga gradual para o sistema de
+14 barras, acontece o suprimento de potência ativa de acordo com o fator de
+
+52
+
+participação de cada barra de geração. Ainda que hajam somente duas unidades
+geradoras de potência ativa, nas barras 1 e 2, observa-se que, para este caso, não
+ocorre a extrapolação de limite de potência ativa. Do mesmo modo, identifca-se pelo
+gráfico que as unidades geradoras das barras 𝑃𝑉 3, 6 e 8 não fornecem potência
+ativa, 𝑃𝑔𝑒𝑟 = 0, uma vez que as mesmas são condensadores síncronos.
+Assim, para o caso base do sistema de 14 barras, obtém-se o máximo
+carregamento de 𝜆𝑚á𝑥 = 1,520, que corresponde a potência máxima do sistema de:
+𝑃𝑚á𝑥 = 𝜆𝑚á𝑥 ∗ 𝑃𝐶𝑎𝑟𝑔𝑎𝑇𝑜𝑡𝑎𝑙 = 1,520 ∗ 2,590 𝑝𝑢 = 3,937 𝑝𝑢. A tensão crítica obtida da
+barra mais sensível do sistema, neste caso, barra 14, é igual a 𝑉𝑐𝑟í𝑡𝑖𝑐𝑜 = 0,7280 𝑝𝑢.
+
+FIGURA 14 – Curva 𝝀𝑽 para as barras de carga do sistema de 14 barras.
+
+Fonte: Autoria própria.
+
+Com relação à faixa operativa de tensão, identifica-se pelo gráfico 𝜆𝑉 das
+figuras 13 e 14, que o limite de tensão mínima é ultrapassado antes mesmo da
+
+53
+
+ocorrência do ponto de máximo carregamento do sistema, em especial pelas barras
+𝑃𝑄. Ao considerar este limite de tensão mínima como critério de parada do cálculo
+do FPC, tem-se que o máximo carregamento é igual a 𝜆𝑚á𝑥 = 1,230.
+
+4.1.2 Etapa 2: Análise do Caso Base com Ações de Controle de Tensão
+
+Nesta etapa, realizam-se as ações contidas no algoritmo da seção 3.2,
+obtendo-se as curvas das figuras 15 e 16:
+
+FIGURA 15 – Curvas 𝝀𝑽, 𝝀𝑷𝒈𝒆𝒓 e 𝝀𝑸𝒈𝒆𝒓 para o sistema de 14 barras, considerando ações de controle
+de tensão.
+
+Fonte: Autoria própria.
+
+54
+
+FIGURA 16 – Curvas 𝝀𝑽𝒔 para as barras de carga do sistema de 14 barras,
+utilizando as ações de controle de tensão.
+
+Fonte: Autoria própria.
+
+Os controles do tipo compensação shunt e variação do TAP dos
+transformadores aplicados para este sistema estão descritos nas tabelas 2 e 3.
+
+55
+
+TABELA 2 – Capacitores shunt disponíveis nas respectivas barras do sistema de 14 barras.
+
+Barra
+3
+
+Capacitores shunt (pu) – 1º. Estágio
+0,025
+
+Capacitores shunt (pu) – 2º. Estágio
+0,025
+
+4
+
+0,035
+
+0,035
+
+5
+
+0,035
+
+0,035
+
+8
+
+0,015
+
+0,015
+
+9
+
+0,015
+
+0,015
+
+10
+
+0,025
+
+0,025
+
+11
+
+0,025
+
+0,025
+
+12
+
+0,025
+
+0,025
+
+13
+
+0,035
+
+0,035
+
+14
+
+0,050
+
+0,050
+Fonte: Autoria própria.
+
+TABELA 3 – Ajustes de TAP disponíveis para o sistema de 14 barras.
+
+De (Barra)
+4
+
+Para (Barra)
+7
+
+TAPMáx (pu)
+0,937
+
+TAPMín (pu)
+1,310
+
+4
+
+9
+
+0,925
+
+1,250
+
+5
+
+6
+
+0,900
+
+1,250
+
+Step
+
+0,001
+
+Fonte: Autoria própria.
+
+Com a aplicação de tais formas de controle de acordo a faixa operativa de
+tensão adotada, observa-se pelo gráfico 𝜆𝑉 das figuras 15 e 16 que, quando houve a
+ultrapassagem do limite inferior de tensão da barra 14, implementou-se a ação da
+elevação gradual da tensão no secundário dos transformadores através dos steps.
+Quando o incremento de carga é de aproximadamente 𝜆 = 1,300, identifica-se uma
+ação mais agressiva imposta pelo acréscimo dos estágios dos bancos de capacitores,
+na tentativa de adequação da tensão.
+Assim, ao se considerar a faixa operativa de tensão juntamente com as ações
+de controle, obteve-se uma margem de carregamento 9,67 % maior em relação ao
+encontrado no caso base, com um carregamento máximo de 𝜆𝑚á𝑥 = 1,667 e a tensão
+crítica da barra mais sensível, barra 14, igual a 𝑉𝑐𝑟í𝑡𝑖𝑐𝑜 = 0,7982 𝑝𝑢.
+
+56
+
+4.1.3 Etapa 3: Análise de Contingências de Linhas de Transmissão
+
+Na etapa 3, aplicam-se as contingências de linhas de transmissão com a
+finalidade de obter o LOS para esta análise. Utilizando-se do mesmo procedimento
+considerado na etapa 2, obtiveram-se os resultados apresentados na tabela 4 de
+acordo com a retirada das linhas de transmissão, utilizando-se do critério n-1:
+
+TABELA 4 – Resultados das contingências de linhas de transmissão para o sistema de 14
+barras.
+
+Contingência
+
+Retirada das linhas
+(entre barras)
+
+𝝀𝒄𝒓í𝒕𝒊𝒄𝒐
+(LCCPCs)
+
+𝑽𝒄𝒓í𝒕𝒊𝒄𝒐 (𝒑𝒖)
+Barra 14
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+
+1-2
+1-5
+2-3
+2-4
+2-5
+3-4
+4-5
+4-7
+4-9
+5-6
+6-11
+6-12
+6-13
+7-8
+7-9
+9-10
+9-14
+10-11
+12-13
+13-14
+
+*
+1,401
+1,250
+1,537
+1,572
+1,644
+1,611
+1,540
+1,603
+1,292
+1,643
+1,631
+1,483
+**
+1,465
+1,561
+1,566
+1,661
+1,650
+1,656
+
+*
+0,6115
+0,8107
+0,5777
+0,5757
+0,7715
+0,7917
+0,6247
+0,5752
+0,6922
+0,5751
+0,5761
+0,5346
+**
+0,5724
+0,7093
+0,5023
+0,7859
+0,8303
+0,7757
+
+* - Não atende ao carregamento inicial (𝝀 = 𝟏);
+** - Situação de ilhamento;
+Fonte: Autoria própria.
+
+57
+
+Como apresentado na seção 2.8, a tabela 4 apresenta os LCCPCs de acordo
+com as respectivas contingências de linhas de transmissão, onde o menor valor dentre
+os LCCPCs encontrados, será o LOS. Assim, da tabela 4, tem-se que os menores
+valores são os referentes às contingências 1, 3 e 14.
+Com relação à contingência 14, não há convergência do FPC, pois a mesma
+refere-se a retirada de uma parte do sistema caracterizada pela representação do
+equivalente de um transformador de 3 enrolamentos, sendo a barra 7 uma barra
+fictícia e a barra 8 uma barra que normalmente atende os centros de controle e
+também auxilia na regulagem de tensão. Assim, este tipo de contingência, que
+constitui em uma situação chamada de “ilhamento”, não será analisada neste trabalho,
+pois a mesma é caracterizada por uma grande perda de carga do sistema.
+A contingência 3 apresenta uma contingência crítica (𝑐𝑟í𝑡𝑖𝑐𝑜 = 1,250) pois a
+falta das linhas entre as barras 2-3 representa uma perda na distribuição direta da
+potência fornecida pelo gerador da barra 2 até a barra 3.
+Para a contingência 1, o FPC não converge para o incremento de carga inicial
+ = 1, pois, com a retirada das linhas entre as barras 1 e 2, o sistema não é capaz de
+suprir a demanda inicial e ocorrerá o colapso de tensão. Entretanto, pode-se
+implementar os mesmos controles aplicados na etapa 2 ao máximo no início da
+execução do FPC a fim de que se possa aprimorar o LCCPC para este caso.
+Realizando-se este procedimento, obtém-se que: 𝜆𝑐𝑟í𝑡𝑖𝑐𝑜 = 1,1148.
+Por fim, considerando-se as contingências críticas de linhas de transmissão
+analisadas, tem-se que o LOS para o sistema de 14 barras é igual a 𝜆𝑐𝑟í𝑡𝑖𝑐𝑜 = 1,1148.
+
+4.1.4 Etapa 4: Análise de Contingências de Unidades Geradoras
+
+Nesta etapa, analisam-se as contingências de unidades geradoras diminuindo
+a capacidade de geração em intervalos de 25%, considerando o critério n-1. Os
+resultados obtidos constam na tabela 5:
+
+58
+
+TABELA 5 – Resultados das contingências das unidades geradoras do sistema de 14 barras.
+
+Unidade
+
+Capacidade de
+
+𝝀𝒄𝒓í𝒕𝒊𝒄𝒐
+
+𝑽𝒄𝒓í𝒕𝒊𝒄𝒐 (𝒑𝒖)
+
+Geradora (Barra)
+
+Geração (%)
+
+(LCCPCs)
+
+Barra 14
+
+75%
+
+1,600
+
+0,9198
+
+50%
+
+1,550
+
+0,9507
+
+25%
+
+0
+
+0
+
+4
+
+0%
+
+0
+
+0
+
+5
+
+75%
+
+1,633
+
+0,8132
+
+50%
+
+1,550
+
+0,9038
+
+25%
+
+1,500
+
+0,9293
+
+0%
+
+1,500
+
+0,9167
+
+Contingência
+1
+2
+
+1
+
+3
+
+6
+
+2
+
+7
+8
+
+Fonte: Autoria própria.
+
+Para a contingência na barra slack, foram observadas violações de limite de
+ativo e reativo a partir da limitação em 50% da unidade geradora, uma vez que a barra
+slack tem a característica de ser a barra na qual tem a capacidade de fornecer a maior
+porcentagem de potência ativa e reativa de um sistema. Por outro lado, nas
+contingências da unidade geradora da barra 2, não foram observadas violações de
+limite de potência ativa e reativa, isto ocorre pelo fato de a barra slack suprir tais
+contingências impostas na barra 2.
+De acordo com a tabela 5, os LCCPCs críticos são aqueles atribuídos à barra
+slack, uma vez que esta tem a maior capacidade de geração em relação à barra de
+geração
+
+2,
+
+destacando-se
+
+as
+
+contingências
+
+3
+
+e
+
+4,
+
+que
+
+correspondem,
+
+respectivamente, à barra de geração 1 em 25% e 0%, e não há a convergência do
+FPC para o carregamento inicial. Do contrário, quando são impostas convergências
+na barra de geração 2 da ordem de 25% e 0%, observa-se que a barra 1 consegue
+suprir a demanda mesmo com as faltas de geração.
+Assim como realizado na etapa 3, pode-se verificar a aprimoração dos
+LCCPCs críticos correspondentes às contingências 3 e 4, atribuindo-se ao máximo os
+controles implementados na etapa 2 no início da execução do FPC. Desta forma,
+
+59
+
+realizando-se o aprimoramento dos LCCPCs, obtém-se para a contingência 3:
+𝜆𝑐𝑟í𝑡𝑖𝑐𝑜 = 1,150, e, para contingência 4, não há convergência para o incremento de
+carga inicial. Portanto, o LOS do sistema de 14 barras correspondente às
+contingências de unidades geradoras é nulo para a contingência em 0% da unidade
+geradora da barra 1.
+
+4.2
+
+RESULTADOS DO SISTEMA DE 30 BARRAS
+
+Os resultados do sistema de 30 barras consideram a topologia ilustrada na
+figura 17:
+
+FIGURA 17 – Sistema de 30 barras.
+
+Fonte: BELATI (2003).
+
+60
+
+4.2.1 Etapa 1: Análise do Caso Base
+
+Através do algoritmo de FPC, obtiveram-se os gráficos 𝜆𝑉, 𝜆𝑃𝑔𝑒𝑟 𝑒 𝜆𝑄𝑔𝑒𝑟 para
+o caso base do sistema de 30 barras, de acordo com a figura 18, e, em seguida, pela
+figura 19, o gráfico 𝜆𝑉 para as barras de carga mais sensíveis deste sistema:
+
+FIGURA 18 - Curvas 𝝀𝑽, 𝝀𝑷𝒈𝒆𝒓 e 𝝀𝑸𝒈𝒆𝒓 para o sistema de 30 barras.
+
+Fonte: Autoria própria.
+
+61
+
+FIGURA 19 – Curva 𝝀𝑽 para as barras de carga do sistema de 30 barras.
+
+Fonte: Autoria própria.
+
+Semelhante ao ocorrido para o sistema de 14 barras, pela figura 18 observase para o sistema de 30 barras o comportamento das barras 𝑃𝑉 que se tornam 𝑃𝑄
+assim que o limite de reativo é extrapolado. Do mesmo modo, observa-se pelo gráfico
+𝜆𝑃𝑔𝑒𝑟 que não há extrapolação do limite de potência ativa ao longo do incremento de
+carga e que as barras 5, 8, 11 e 13 possuem condensadores síncronos conectados
+ao sistema.
+Através da figura 19, do contrário que fora observado para o sistema de 14
+barras, observa-se que as barras PQ atingem o limite de tensão mínima com um valor
+menor de 𝜆, em virtude do aumento do carregamento inicial do sistema em análise.
+Do mesmo modo, observa-se pelas figuras 18 e 19 que todas as barras apresentam
+
+62
+
+tensões abaixo da tensão mínima antes da ocorrência do colapso de tensão e o limite
+de tensão máxima não é atingido. Considerando-se a interrupção do algoritmo de FPC
+quando qualquer barra atinge o limite de tensão mínima, tem-se que o incremento de
+carga máximo para a situação é de 𝜆𝑚á𝑥𝑖𝑚𝑜 = 1,030.
+Assim, para o sistema de 30 barras, obteve-se o incremento de carga máximo
+de 𝜆𝑚á𝑥𝑖𝑚𝑜 = 1,370 e a tensão crítica da barra mais sensível do sistema, barra 26,
+igual a 𝑉𝑐𝑟í𝑡𝑖𝑐𝑜 = 0,6845 𝑝𝑢.
+
+4.2.2 Etapa 2: Análise do Caso Base com Ações de Controle de Tensão
+
+As figuras 20 e 21 apresentam as curvas obtidas com a imposição das ações
+de controle utilizando-se da faixa operativa de tensão para o sistema de 30 barras.
+
+FIGURA 20 - Curvas 𝝀𝑽, 𝝀𝑷𝒈𝒆𝒓 e 𝝀𝑸𝒈𝒆𝒓 para o sistema de 30 barras, considerando ações de controle de
+tensão.
+
+Fonte: Autoria própria.
+
+63
+
+FIGURA 21 - Curvas 𝝀𝑽𝒔 para as barras de carga do sistema de 30 barras, utilizando
+as ações de controle de tensão.
+
+Fonte: Autoria própria.
+
+Os controles do tipo compensação shunt e variação do TAP dos
+transformadores aplicados para este sistema estão descritos nas tabelas 6 e 7.
+
+64
+
+TABELA 6 - Capacitores shunt disponíveis nas respectivas barras do sistema de 30 barras.
+
+Barra Capacitores shunt (pu) – 1º. Estágio Capacitores shunt (pu) – 2º. Estágio
+3
+0,015
+0,015
+4
+
+0,015
+
+0,015
+
+5
+
+0,015
+
+0,015
+
+6
+
+0,035
+
+0,035
+
+7
+
+0,050
+
+0,050
+
+8
+
+0,035
+
+0,035
+
+18
+
+0,015
+
+0,015
+
+19
+
+0,025
+
+0,025
+
+20
+
+0,015
+
+0,015
+
+25
+
+0,015
+
+0,015
+
+26
+
+0,025
+
+0,025
+
+28
+
+0,015
+
+0,015
+
+29
+
+0,015
+
+0,015
+
+30
+
+0,015
+
+0,015
+Fonte: Autoria própria.
+
+TABELA 7 - Ajustes de TAP disponíveis para o sistema de 30 barras.
+
+De (Barra)
+4
+
+Para (Barra)
+12
+
+TAPMáx (pu)
+0,870
+
+TAPMín (pu)
+1,050
+
+6
+
+9
+
+0,900
+
+1,050
+
+6
+
+10
+
+0,925
+
+1,250
+
+28
+
+27
+
+0,900
+
+1,250
+
+Step
+
+0,001
+
+Fonte: Autoria própria.
+
+Com a aplicação das ações de controle considerando a faixa operativa de
+tensão para o sistema de 30 barras, aumentou-se a margem de carregamento em
+10,22% em relação ao analisado na etapa 1, obtendo-se: 𝜆𝑚á𝑥𝑖𝑚𝑜 = 1,510 e 𝑉𝑐𝑟í𝑡𝑖𝑐𝑜 =
+0,8062 𝑝𝑢, sendo esta última correspondente à barra mais sensível do sistema, barra
+26.
+
+65
+
+Cabe destacar para este sistema o que ocorre quando 𝜆 é aproximadamente
+igual a 1,01. Neste momento, identifica-se um aumento de tensão acentuado, oriundo
+do aumento gradual da tensão nos secundários dos transformadores por meio dos
+steps. Na ocorrência da ultrapassagem do limite de tensão mínima após o FPC, os
+controles são implementados e mantém-se o mesmo incremento de carga até a
+obtenção de um valor dentro do limite, e, uma vez atingido o limite de ajuste de TAP,
+ocorre a entrada dos estágios da compensação shunt.
+
+4.2.3 Etapa 3: Análise de Contingências de Linhas de Transmissão
+
+Assim como apresentado para o sistema de 14 barras, seguindo o critério n1, aplicou-se para o sistema de 30 barras as contingências de linhas de transmissão.
+A tabela 8 apresenta os resultados obtidos:
+
+TABELA 8 - Resultados das contingências de linhas de transmissão para o sistema de 30 barras.
+
+(continua)
+
+Contingência
+
+Retirada das linhas
+(entre barras)
+
+𝝀𝒄𝒓í𝒕𝒊𝒄𝒐
+(LCCPCs)
+
+𝑽𝒄𝒓í𝒕𝒊𝒄𝒐 (𝒑𝒖)
+Barra 26
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+
+1-2
+1-3
+2-4
+2-5
+2-6
+3-4
+4-6
+4-12
+5-7
+6-7
+6-8
+6-9
+6-10
+6-28
+8-28
+9-10
+9-11
+10-17
+
+*
+1,123
+1,430
+1,122
+1,390
+1,129
+1,422
+1,299
+1,483
+1,300
+1,483
+1,435
+1,478
+1,322
+1,500
+1,354
+**
+1,450
+
+*
+0,5980
+0,7685
+0,7263
+0,5609
+0,6027
+0,8020
+0,6536
+0,7565
+0,8832
+0,7812
+0,5944
+0,7780
+0,7650
+0,7723
+0,5900
+**
+0,8897
+
+66
+
+TABELA 8 - Resultados das contingências de linhas de transmissão para o sistema de 30 barras.
+
+(conclusão)
+
+Contingência
+
+Retirada das linhas
+(entre barras)
+
+𝝀𝒄𝒓í𝒕𝒊𝒄𝒐
+(LCCPCs)
+
+𝑽𝒄𝒓í𝒕𝒊𝒄𝒐 (𝒑𝒖)
+Barra 26
+
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+
+10-20
+10-21
+10-22
+12-13
+12-14
+12-15
+12-16
+14-15
+15-18
+15-23
+16-17
+18-19
+19-20
+21-22
+22-24
+23-24
+24-25
+25-26
+25-27
+27-29
+27-30
+28-27
+29-30
+
+1,464
+1,489
+1,500
+**
+1,450
+1,467
+1,450
+1,506
+1,450
+1,489
+1,506
+1,506
+1,489
+1,506
+1,483
+1,506
+1,506
+**
+1,483
+1,453
+1,462
+1,177
+1,500
+
+0,6117
+0,7750
+0,7829
+**
+0,8877
+0,5488
+0,8909
+0,7774
+0,8934
+0,7624
+0,7752
+0,7788
+0,7912
+0,7808
+0,7513
+0,7724
+0,8052
+**
+0,6722
+0,7311
+0,7209
+0,5267
+0,7883
+
+* - Não atende ao carregamento inicial (𝝀 = 𝟏);
+** - Situação de ilhamento;
+Fonte: Autoria própria.
+
+Assim, como para o sistema de 14 barras, observa-se pela tabela 8 que a
+contingência mais severa encontrada é a retirada da linha entre as barras 1 e 2, pois
+não há convergência para o carregamento inicial. A retirada das linhas 9-11, 12-13 e
+25-26 são da mesma maneira contingências severas, mas referem-se a situações de
+ilhamento.
+
+67
+
+Deste modo, aplicando-se as mesmas ações de controle apresentadas nas
+tabelas 6 e 7 ao máximo no início da execução do FPC, não foi possível aprimorar o
+LCCPC para a situação da perda da linha de transmissão entre as barras 1 e 2, assim,
+obtém-se que o LOS para o sistema de 30 barras é nulo e corresponde à contingência
+1.
+4.2.4 Etapa 4: Análise de Contingências de Unidades Geradoras
+
+O sistema de 30 barras possui duas unidades geradoras disponíveis para o
+fornecimento de potência ativa e reativa, e, afim de obter-se o LOS para tal sistema,
+aplicam-se as contingências nas unidades geradoras diminuindo a capacidade de
+geração gradualmente em 25%, utilizando-se do critério n-1. Os resultados são
+apresentados na tabela 9:
+
+TABELA 9 - Resultados das contingências das unidades geradoras do sistema de 30 barras.
+
+Unidade
+
+Capacidade de
+
+𝝀𝒄𝒓í𝒕𝒊𝒄𝒐
+
+𝑽𝒄𝒓í𝒕𝒊𝒄𝒐 (𝒑𝒖)
+
+Geradora (Barra)
+
+Geração (%)
+
+(LCCPCs)
+
+Barra 26
+
+75%
+
+1,450
+
+0,8968
+
+50%
+
+1,350
+
+0,9584
+
+25%
+
+0
+
+0
+
+4
+
+0%
+
+0
+
+0
+
+5
+
+75%
+
+1,450
+
+0,8852
+
+50%
+
+1,400
+
+0,9088
+
+25%
+
+1,400
+
+0,8766
+
+0%
+
+1,350
+
+0,9233
+
+Contingência
+1
+2
+3
+
+6
+7
+8
+
+1
+
+2
+
+Fonte: Autoria própria.
+
+Os resultados obtidos para o sistema de 30 barras são semelhantes aos
+encontrados para o sistema de 14 barras. Sendo a barra slack uma unidade geradora
+com grande capacidade de fornecimento de potência ativa e reativa, ela por si só é
+capaz de suprir as faltas da unidade geradora da barra 2. Deste modo, quando há a
+
+68
+
+falta completa da barra de geração slack, a mesma não converge para o carregamento
+inicial, caracterizando esta como uma contingência severa.
+Assim, mesmo com a tentativa de aprimoramento dos LCCPCs críticos
+analisados para o sistema de 30 barras, o LOS é nulo, e refere-se à contingência da
+unidade geradora da barra 1 em 0%.
+
+4.3
+
+RESULTADOS DO SISTEMA DE 57 BARRAS
+
+Para os resultados do sistema de 57 barras, utilizou-se a topologia
+apresentada na figura 22:
+FIGURA 22 – Sistema de 57 Barras.
+
+Fonte: ZEFERINO (2011).
+
+69
+
+4.3.1 Etapa 1: Análise do Caso Base
+
+Assim como realizado para o sistema de 14 e 30 barras, as figuras 23 e 24
+apresentam os resultados do algoritmo do FPC para o sistema de 57 barras:
+
+FIGURA 23 - Curvas 𝝀𝑽, 𝝀𝑷𝒈𝒆𝒓 e 𝝀𝑸𝒈𝒆𝒓 para o sistema de 57 barras.
+
+Fonte: Autoria própria.
+
+70
+
+FIGURA 24 - Curvas 𝝀𝑽𝒔 para as barras de carga críticas do sistema de 57 barras.
+
+Fonte: Autoria própria.
+
+A grande diferença entre o sistema de 57 barras e os demais é o acréscimo
+de inúmeras barras de carga. Assim, tem-se um aumento considerável na carga total
+inicial do sistema para o cálculo do FPC. O efeito desta alta demanda é observado
+através dos resultados obtidos para o sistema: 𝜆𝑐𝑟í𝑡𝑖𝑐𝑜 = 1,1478 e 𝑉𝑐𝑟í𝑡𝑖𝑐𝑜 = 0,5226 𝑝𝑢
+(barra 31).
+Ao se considerar a faixa operativa de tensão, tem-se que o sistema possui
+tensão inferior ao limite mínimo já para a segunda solução, ao se interromper o FPC
+neste momento, tem-se 𝜆𝑚á𝑥 = 1,010.
+
+71
+
+Este tipo de ocorrência ilustra a dificuldade em se garantir a estabilidade de
+tensão em um SEP, pois, mesmo com o acréscimo de injeção de potência ativa e
+reativa nas barras PV do sistema de 57 barras, comparando-se com os sistemas
+apresentados anteriormente, obtiveram-se sucessivas quedas de tensão em uma
+parcela do sistema (barras 31 a 35), região onde não há nenhum tipo de controle de
+tensão ou injeções de potência ativa e reativa próximas à ela.
+Analisando-se o gráfico 𝜆𝑃𝑔𝑒𝑟 da figura 23, observa-se que as barras 2, 6 e 9
+são correspondentes aos condensadores síncronos conectados às mesmas e
+destaca-se a ocorrência da ultrapassagem de limite de potência ativa pela unidade
+geradora da barra 8. A partir deste momento, fixou-se o fornecimento de potência ativa
+no limite de geração, e, com o aumento da demanda através do incremento de carga,
+dividiu-se o fator de participação entre as barras de geração restantes. O mesmo deuse para a extrapolação dos limites das demais barras de geração, até a ocorrência da
+barra slack assumir o fornecimento de potência ativa. De maneira similar, o gráfico
+𝜆𝑄𝑔𝑒𝑟 apresenta as barras que fornecem potência reativa e que estão diretamente
+relacionadas ao comportamento das barras 𝑃𝑉 no gráfico de 𝜆𝑉.
+
+72
+
+4.3.2 Etapa 2: Análise do Caso Base com Ações de Controle de Tensão
+
+As figuras 25 e 26 ilustram os resultados obtidos com a aplicação das ações
+de controle considerando-se a faixa operativa de tensão:
+
+FIGURA 25 - Curvas 𝝀𝑽, 𝝀𝑷𝒈𝒆𝒓 e 𝝀𝑸𝒈𝒆𝒓 para o sistema de 57 barras, considerando ações de controle
+de tensão.
+
+Fonte: Autoria própria.
+
+73
+
+FIGURA 26 - Curvas 𝝀𝑽𝒔 para as barras de carga do sistema de 57 barras, utilizando as ações
+de controle de tensão.
+
+Fonte: Autoria própria.
+
+Os controles do tipo compensação shunt e variação do TAP dos
+transformadores aplicados para este sistema estão descritos nas tabelas 10 e 11.
+
+74
+
+TABELA 10 - Capacitores shunt disponíveis nas respectivas barras do sistema de 57 barras.
+
+Barra
+24
+
+Capacitores shunt (pu) – 1º. Estágio
+0,005
+
+Capacitores shunt (pu) – 2º. Estágio
+0,005
+
+25
+
+0,005
+
+0,005
+
+31
+
+0,050
+
+0,050
+
+32
+
+0,025
+
+0,025
+
+33
+
+0,025
+
+0,025
+
+34
+
+0,025
+
+0,025
+
+39
+
+0,010
+
+0,010
+
+40
+
+0,010
+
+0,010
+
+56
+
+0,005
+
+0,005
+
+57
+
+0,005
+
+0,005
+Fonte: Autoria própria.
+
+TABELA 11 - Ajustes de TAP disponíveis para o sistema de 57 barras.
+
+De (Barra)
+
+Para (Barra)
+
+TAPMáx (pu)
+
+TAPMín (pu)
+
+4
+
+18
+
+0,937
+
+1,310
+
+21
+
+20
+
+0,900
+
+1,100
+
+24
+
+26
+
+0,937
+
+1,310
+
+7
+
+29
+
+0,950
+
+1,100
+
+34
+
+32
+
+0,950
+
+1,050
+
+11
+
+41
+
+0,952
+
+1,250
+
+15
+
+45
+
+0,952
+
+1,250
+
+14
+
+46
+
+0,950
+
+1,050
+
+10
+
+51
+
+0,950
+
+1,050
+
+13
+
+49
+
+0,870
+
+1,050
+
+11
+
+43
+
+0,925
+
+1,100
+
+40
+
+56
+
+0,937
+
+1,250
+
+39
+
+57
+
+0,937
+
+1,125
+
+9
+
+55
+
+0,950
+
+1,250
+
+Fonte: Autoria própria.
+
+Step
+
+0,001
+
+75
+
+Assim como realizado para os demais sistemas, aplicou-se para o sistema de
+57 barras o algoritmo da seção 3.2 a fim de aprimorar a margem de carregamento de
+acordo com a faixa operativa de tensão. Com isso, aumentou-se a margem de
+carregamento em 2,631% e os resultados obtidos foram os seguintes: 𝜆𝑚á𝑥 = 1,178 e
+𝑉𝑐𝑟í𝑡𝑖𝑐𝑜 = 0,6035 𝑝𝑢 (barra 31).
+Para este sistema, verifica-se a tentativa da convergência de um valor
+superior ao limite de tensão mínima quando 𝜆 é aproximadamente igual a 1,010, neste
+momento, observa-se que 𝜆 é mantido o mesmo e sucessivas tentativas de aumento
+de tensão nos secundários dos transformadores são efetuadas de acordo com o step
+definido. A partir daí, quando os limites de tap são atingidos, efetuam-se os
+acréscimos dos estágios de compensação shunt por meio dos bancos de capacitores.
+Através da figura 26, verifica-se que mesmo com o acréscimo das ações de
+controle, as barras 31 a 35 são as mais sensíveis ao incremento de carga, devido à
+distância em relação aos centros de geração e as sucessivas quedas de tensão nas
+demais barras do sistema.
+
+4.3.3 Etapa 3: Análise de Contingências de Linhas de Transmissão
+
+Assim como apresentado para os demais sistemas, aplicou-se para o sistema
+de 57 barras as contingências de linhas de transmissão seguindo o critério n-1. A
+tabela 12 apresenta os resultados obtidos:
+
+TABELA 12 - Resultados das contingências de linhas de transmissão para o sistema de 57
+barras.
+(continua)
+
+Contingência
+
+Retirada das linhas
+(entre barras)
+
+𝝀𝒄𝒓í𝒕𝒊𝒄𝒐
+(LCCPCs)
+
+𝑽𝒄𝒓í𝒕𝒊𝒄𝒐 (𝒑𝒖)
+Barra 31
+
+1
+2
+3
+4
+5
+6
+7
+
+1-2
+2-3
+3-4
+4-5
+4-6
+6-7
+6-8
+
+1,126
+1,179
+1,169
+1,176
+1,176
+1,177
+1,175
+
+0,4282
+0,4475
+0,4305
+0,4232
+0,4188
+0,4270
+0,4231
+
+76
+
+TABELA 12 - Resultados das contingências de linhas de transmissão para o sistema de 57
+barras.
+(continuação)
+
+Contingência
+
+Retirada das linhas
+(entre barras)
+
+𝝀𝒄𝒓í𝒕𝒊𝒄𝒐
+(LCCPCs)
+
+𝑽𝒄𝒓í𝒕𝒊𝒄𝒐 (𝒑𝒖)
+Barra 31
+
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+
+8-9
+9-10
+9-11
+9-12
+9-13
+13-14
+13-15
+1-15
+1-16
+1-17
+3-15
+4-18
+5-6
+7-8
+10-12
+11-13
+12-13
+12-16
+12-17
+14-15
+18-19
+19-20
+21-20
+21-22
+22-23
+23-24
+24-25
+24-26
+26-27
+27-28
+28-29
+7-29
+25-30
+30-31
+31-32
+32-33
+34-32
+34-35
+35-36
+
+1,129
+1,177
+1,171
+1,177
+1,176
+1,176
+1,175
+1,152
+1,171
+1,168
+1,172
+**
+1,177
+1,158
+1,175
+1,176
+1,161
+1,175
+1,174
+1,170
+1,172
+1,176
+1,180
+1,180
+1,137
+1,155
+**
+1,151
+1,151
+1,133
+1,111
+1,059
+1,067
+1,137
+1,143
+**
+1,049
+1,057
+**
+
+0,4090
+0,4257
+0,4351
+0,4298
+0,4464
+0,4472
+0,4298
+0,4085
+0,4046
+0,4446
+0,4096
+**
+0,4265
+0,4300
+0,4236
+0,4193
+0,3956
+0,4377
+0,4466
+0,4458
+0,4426
+0,4206
+0,4550
+0,4550
+0,4275
+0,4521
+**
+0,4818
+0,4818
+0,4871
+0,4598
+0,6606
+0,5391
+0,5822
+0,4210
+**
+0,6352
+0,7388
+**
+
+77
+
+TABELA 12 - Resultados das contingências de linhas de transmissão para o sistema de 57
+barras.
+(conclusão)
+
+Contingência
+
+Retirada das linhas
+(entre barras)
+
+𝝀𝒄𝒓í𝒕𝒊𝒄𝒐
+(LCCPCs)
+
+𝑽𝒄𝒓í𝒕𝒊𝒄𝒐 (𝒑𝒖)
+Barra 31
+
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+
+36-37
+37-38
+37-39
+36-40
+22-38
+11-41
+41-42
+41-43
+38-44
+15-45
+14-46
+46-47
+47-48
+48-49
+49-50
+50-51
+10-51
+13-49
+29-52
+52-53
+53-54
+54-55
+11-43
+44-45
+40-56
+56-41
+56-42
+39-57
+57-56
+38-49
+38-48
+9-55
+
+1,089
+1,070
+1,178
+1,179
+1,146
+1,172
+1,165
+1,167
+1,162
+1,156
+1,158
+1,158
+1,171
+1,174
+1,179
+1,173
+1,165
+1,155
+1,142
+1,177
+1,176
+1,174
+1,162
+1,156
+1,179
+1,173
+1,176
+1,178
+1,175
+1,170
+1,161
+1,143
+
+0,5054
+0,5628
+0,4509
+0,4323
+0,4434
+0,4489
+0,4204
+0,4159
+0,4377
+0,4211
+0,4064
+0,3969
+0,4101
+0,4137
+0,4377
+0,4154
+0,4442
+0,4289
+0,8381
+0,4343
+0,4156
+0,4155
+0,4317
+0,4153
+0,4474
+0,4180
+0,4512
+0,4180
+0,4415
+0,4498
+0,4515
+0,7954
+
+** - Situação de ilhamento;
+Fonte: Autoria própria.
+
+As contingências 19, 34, 43 e 46 representam contingências das quais houve
+ilhamento, e, deste modo, não serão consideradas para a análise do LOS.
+
+78
+
+Ao contrário do que foi obtido para os sistemas de 14 e 30 barras, excetuandose as ocorrências de ilhamento, todas as contingências do sistema de 57 barras
+convergiram para valores superiores ao do carregamento inicial. Assim, procura-se o
+menor valor dentre os LCCPCs críticos para determinação do LOS deste sistema em
+análise.
+Deste modo, obtém-se que o LOS para contingências de linhas de
+transmissão do sistema de 57 barras corresponde à contingência 44, com a perda das
+linhas entre as barras 34-32, 𝜆𝑐𝑟í𝑡𝑖𝑐𝑜 = 1,049. Tal contingência é caracterizada como
+severa pela falta do transformador conectado entre as barras 34-32 em uma área do
+sistema onde não há fontes de geração próximas às barras além das inúmeras quedas
+de tensão presentes nesta região.
+
+4.3.4 Etapa 4: Análise de Contingências de Unidades Geradoras
+
+Nesta etapa apresentam-se os LCCPCs obtidos das contingências das
+unidades geradoras para o sistema de 57 barras, utilizando-se do critério n-1, a fim de
+que se possa obter o LOS. Na tabela 13 são exibidos os resultados:
+
+TABELA 13 - Resultados das contingências das unidades geradoras do sistema de 57 barras.
+
+(continua)
+
+Contingência
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+
+Unidade Geradora
+(Barra)
+
+1
+
+3
+
+8
+
+Capacidade de
+Geração
+
+𝝀𝒄𝒓í𝒕𝒊𝒄𝒐
+(LCCPCs)
+
+𝑽𝒄𝒓í𝒕𝒊𝒄𝒐 (𝒑𝒖)
+
+75%
+50%
+25%
+0%
+75%
+50%
+25%
+0%
+75%
+50%
+25%
+0%
+
+1,177
+1,177
+1,000
+0
+1,174
+1,172
+1,168
+1,167
+1,166
+1,106
+0
+0
+
+0,4400
+0,4400
+0,9506
+0
+0,4142
+0,4394
+0,4409
+0,4090
+0,4956
+0,4402
+0
+0
+
+(Barra 31)
+
+79
+
+TABELA 13 - Resultados das contingências das unidades geradoras do sistema de 57 barras.
+
+(conclusão)
+
+Contingência
+13
+14
+15
+16
+
+Unidade Geradora
+(Barra)
+
+Capacidade de
+Geração
+
+𝝀𝒄𝒓í𝒕𝒊𝒄𝒐
+(LCCPCs)
+
+𝑽𝒄𝒓í𝒕𝒊𝒄𝒐 (𝒑𝒖)
+
+12
+
+75%
+50%
+25%
+0%
+
+1,167
+1,138
+1,105
+1,089
+
+0,4014
+0,4817
+0,4815
+0,4141
+
+(Barra 31)
+
+Fonte: Autoria própria.
+
+Diferentemente dos demais sistemas, o sistema de 57 barras é constituído por
+quatro barras que fornecem potência ativa, e, analisando-se as contingências das
+mesmas, pode-se determinar quais são as unidades geradoras mais sensíveis e que
+levam o sistema ao colapso, dependendo da severidade da contingência.
+Dentre as barras de geração, as barras 3 e 12, são as que apresentam maior
+estabilidade quando da ocorrência de faltas da ordem de 75% a 0% da capacidade de
+geração. Pode-se afirmar, portanto, que as faltas nestas barras geração serão
+supridas entre as demais barras.
+Entretanto, para as barras 1 e 8, observa-se que quando ocorrem
+contingências de 25% e 0% as demais barras de geração do sistema não são capazes
+de suprir a demanda de potência ativa, levando o sistema ao colapso de tensão.
+Assim como realizado para os sistemas anteriores, os LCCPCs críticos podem
+ser aprimorados a fim de que se possa obter um valor não-nulo. Portanto,
+implementando-se os controles de tensão disponíveis ao máximo no início da
+execução do FPC, obtém-se 𝜆𝑐𝑟í𝑡𝑖𝑐𝑜 = 0 para as contingências 4, 11 e 12. Assim,
+mesmo com a implementação das ações de controle disponíveis, o LOS considerando
+contingências de unidades geradoras para o sistema de 57 barras é nulo para a
+unidade geradora da barra 1 em 0% e para a unidade geradora 8 em 25% e 0%.
+
+80
+
+5
+
+CONCLUSÕES
+
+A importância do estudo de estabilidade de tensão se dá pela obrigatoriedade
+dos centros de operação e controle operarem em condições que respeitem as
+restrições de carga, operação e segurança.
+Assim sendo, este trabalho tem como objetivo estudar as causas do fenômeno
+de instabilidade de tensão, e, por conseguinte, do colapso de tensão. Utilizando-se da
+análise estática, é realizada uma abordagem considerando as grandes e pequenas
+perturbações, onde, respectivamente, estão associadas a contingências de linhas de
+transmissão e unidades geradoras, e às perturbações normais de carga.
+Apresentadas as definições que envolvem o estudo de estabilidade de tensão,
+foi descrita a metodologia a ser aplicada para a análise de segurança. Apresentou-se
+o método do fluxo de potência continuado, método no qual utiliza-se de um incremento
+de carga como parâmetro de continuação afim de obter a margem de carregamento
+para o sistema, e, em conjunto, para encontrar o ponto de colapso de tensão, foi
+definida a utilização de uma tensão eficaz como parâmetro de continuação, atribuída
+a barra mais sensível do sistema em análise.
+Do mesmo modo, as características das unidades geradoras de potência ativa
+e reativa foram incluídas no cálculo do FPC. Assim, foi possível observar o
+comportamento das barras de geração mediante as pequenas e grandes
+perturbações. Através dos gráficos apresentados, pode-se identificar o momento pelo
+qual tais barras atingem seus respectivos limites de geração, assim como identificouse de igual forma a atuação das demais diante este evento.
+Com o objetivo de tornar a análise de estabilidade de tensão mais prática, foi
+incluída neste trabalho a faixa operativa de tensão definida por ONS (2018). Esta faixa
+delimita os níveis de tensão admissíveis para um estado operativo onde, para este
+trabalho, considerou-se o estado operativo normal. Uma vez definida a faixa de
+operação, foi possível identificar casos dos quais já havia a ultrapassagem do limite
+de tensão mínima durante os primeiros incrementos de carga para o caso base,
+diminuindo consideravelmente a margem de carregamento.
+Sendo assim, com a finalidade de garantir uma margem de carregamento
+dentro dos níveis de tensão adequados a cada incremento de carga, foram
+implementados controles de tensão do tipo ajuste da tensão por meio dos TAPs e
+
+81
+
+compensação shunt utilizando-se de banco de capacitores em dois estágios. Com
+isso, foi possível obter uma margem de carregamento dentro dos níveis admissíveis
+e de até 10,22% maior em relação ao caso base sem ações de controle.
+Para complementar a análise, foram utilizadas contingências de linhas de
+transmissão e de unidades geradoras para obtenção do LOS do sistema, utilizandose das mesmas ações de controle para os níveis de tensão. Foi identificado para estes
+casos que as contingências de linhas de transmissão mais severas são aquelas das
+quais perde-se um caminho direto da transferência de potência entre duas áreas
+importantes em um sistema, o que ocasionou quedas de tensão mais acentuadas e
+acarretou em uma menor margem de carregamento.
+Com relação às unidades geradoras, foi analisado que as contingências mais
+severas são aquelas das quais perde-se a capacidade de geração da barra de
+referência (slack). Foram obtidas situações de colapso para quando não havia
+convergência para o carregamento inicial quando as barras slack se encontravam em
+25% de sua capacidade nominal. Isso acontece pelo fato de, usualmente, a barra slack
+ser a barra de geração com maior capacidade de geração de potência ativa e reativa,
+e, assim que sua capacidade é reduzida, as demais barras de geração do sistema em
+análise não são capazes de suprir este tipo de falta.
+Assim, com este trabalho foi possível aplicar uma metodologia prática,
+considerando uma pequena parcela das dificuldades encontradas pelos centros de
+coordenação e controle onde é atribuída a tarefa de garantir a estabilidade do sistema
+interligado na geração e transmissão de energia elétrica. Deste modo, como
+sugestões de continuação de trabalho, podem-se explorar: métodos de otimização da
+regulagem de tensão por meio dos TAPs e da inclusão de banco de capacitores,
+estratégias de corte de carga (ERAC) para o alívio da sobrecarga nos sistemas, a
+utilização do critério n-2 para contingências e posterior determinação do LOS, e ainda,
+expandir as análises para os demais sistemas-modelo do IEEE, como os modelos de
+118 e 300 barras.
+
+82
+
+REFERÊNCIAS
+ANDERSON, P. M.; FOUAD, A. A. Power system control and stability. 2nd ed.
+Piscataway: John Wiley & Sons, 2003.
+BELATI, E. A. Sensibilidade em fluxo de potência ótimo. 2003. Tese (Doutorado)
+– Escola de Engenharia de São Carlos, Universidade de São Paulo, São Carlos, 2003.
+BIALEK, Janusz W. Why has it happened again? Comparison between the UCTE
+blackout in 2006 and the blackouts of 2003. In: 2007 IEEE Lausanne Power Tech,
+2007, Lausanne. Proceedings [...]. Lausanne: IEEE, 2007. p. 51-56.
+CHAPMAN, Stephen J. Fundamentos de máquinas elétricas. Tradução: Anatólio
+Laschuk. 5. ed. Porto Alegre: AMGH, 2013.
+CHOQUE PILLCO, Edwin. A importância da região de estabilidade no problema
+de análise de estabilidade de tensão em sistemas elétricos de potência. 2011.
+Dissertação (Mestrado em Sistemas Elétricos de Potência) - Escola de Engenharia de
+São Carlos, Universidade de São Paulo, São Carlos, 2011.
+DOBSON, I. et al. Voltage stability assessment: Concepts, practices and
+tools. New York, NY: IEEE Power Engineering Society, 2002.
+GOMES, Paulo. New strategies to improve bulk power system security: lessons
+learned from large blackouts. In: IEEE Power Engineering Society General Meeting,
+2004, Denver. Proceedings […]. Denver: IEEE, 2004. p. 1-7.
+JUSTI, Alyne Nogueira. Metodologia de análise do colapso de tensão em tempo
+real considerando limites de potência ativa e reativa de geradores. 2017.
+Dissertação (Mestrado) – Programa de Pós-graduação em Sistemas de Energia,
+Universidade Tecnológica Federal do Paraná, Curitiba, 2017.
+KUNDUR, Prabha. Power system stability and control. New York, NY: McGraw-Hill,
+1994.
+KUNDUR, Prabha et al. Definition and classification of power system
+stability. IEEE transactions on Power Systems, [s. l.], v. 19, n. 2, p. 1387-1401, 2004.
+LIACCO,
+
+Tomas
+
+E.
+
+Dy.
+
+Real-time
+
+computer
+
+control
+
+systems. Proceedings of the IEEE, [s. l.], v. 62, n. 7, p. 884-891, 1974.
+
+of
+
+power
+
+83
+
+MANSOUR, Moussa Reda. Método rápido para análise de contingências e
+seleção de controles preventivos no contexto de estabilidade de tensão. 2013.
+Tese (Doutorado) – Escola de Engenharia de São Carlos, Universidade de São Paulo,
+São Carlos, 2013.
+MONTICELLI, Alcir J. Fluxo de carga em redes de energia elétrica. São Paulo:
+Editora Edgard Blücher Ltda, 1983.
+OLIVEIRA, Augusto C. C. Método para aumento da margem de Estabilidade de
+Tensão via Redespacho Ótimo da Geração Ativa. 2005. Tese (Doutorado em
+Engenharia Elétrica) – Universidade Federal do Rio de Janeiro, Rio de Janeiro, 2005.
+ONS, Operador Nacional do Sistema Elétrico. Procedimento de Rede Submódulo
+23.3 - Diretrizes e critérios para estudos elétricos. 13/08/2018.
+ONS, Operador Nacional do Sistema Elétrico. Análise de Perturbação do dia
+10/11/2009 às 22h13min envolvendo desligamento dos três circuitos da LT
+765kV Itaberá-Ivaiporã. Relatório de Análise de Perturbação ONS-RE-3-252/2009,
+2009.
+ONS, Operador Nacional do Sistema Elétrico. Ocorrência do dia 19/01/2015. 2015.
+13 slides.
+ONS, Operador Nacional do Sistema Elétrico. Entrevista Coletiva sobre a
+Perturbação de 21/03/2018. 2018. 27 slides.
+TAYLOR, Carson W. Power system voltage stability. New York, NY: McGraw-Hill,
+1994.
+UW Electrical Engineering. Power Systems Test Case Archive. 1999. Disponível em:
+< https://labs.ece.uw.edu/pstca/>. Acesso em 25/10/2019.
+VAN CUTSEM, Thierry; VOURNAS, Costas. Voltage stability of electric power
+systems. New York, NY: Springer Science & Business Media, 1998.
+VAN CUTSEM, Thierry. Voltage instability: phenomena, countermeasures, and
+analysis methods. Proceedings of the IEEE, [s. l.], v. 88, n. 2, p. 208-227, 2000.
+ZEFERINO, Cristiane L. Avaliação e controle da margem de carregamento em
+sistemas elétricos de potência. 2011. Tese (Doutorado) - Escola de Engenharia de
+São Carlos, Universidade de São Paulo, São Carlos, 2011.
+
+84
+
+ANEXO A – DADOS DO SISTEMA DE 14 BARRAS
+
+Apresentam-se nas tabelas 14 e 15 os dados referentes ao sistema de 14
+barras, usualmente conhecido como modelo IEEE de 14 barras. Neste sistema,
+modificaram-se os dados referentes às tensões nominais nas barras de geração, uma
+vez que os dados originais apresentam tensões superiores à faixa operativa de
+tensão, da mesma forma, acrescentaram-se dados de potência nominal nos
+geradores com o objetivo de analisar o comportamento do sistema mediante as
+contingências.
+TABELA 14 – Dados de barra, sistema de 14 barras.
+
+Shunt
+(pu)
+
+Limite
+Mín. de
+Potência
+Reativa
+Gerada
+(MVAr)
+
+Limite
+Máx. de
+Potência
+Reativa
+Gerada
+(MVAr)
+
+Limite
+Máx. de
+Potência
+Ativa
+Gerada
+(MW)
+
+0,0
+
+0,00
+
+-50,0
+
+155,0
+
+365,0
+
+21,7
+
+12,7
+
+0,00
+
+-40,0
+
+50,0
+
+0,00
+
+94,2
+
+19
+
+0,00
+
+0,00
+
+40,0
+
+120,0
+0,00
+
+Potência
+Ativa
+Gerada
+(MW)
+
+Potência
+Reativa
+Gerada
+(MVAr)
+
+Potência
+Ativa
+Consumida
+(MW)
+
+Potência
+Reativa
+Consumida
+(MVAr)
+
+0,00
+
+0,00
+
+0,0
+
+0,00
+
+Barra
+
+Tipo
+
+Tensão
+(pu)
+
+Ângulo
+(pu)
+
+1
+
+2
+
+1,04
+
+2
+
+1
+
+1,01
+
+0,00
+0,00
+
+3
+
+1
+
+1,00
+
+0,00
+
+40,0
+0,00
+
+4
+
+0
+
+0,00
+
+0,00
+
+0,00
+
+0,00
+
+47,8
+
+-3,9
+
+0,00
+
+0,00
+
+0,00
+
+0,00
+
+5
+
+0
+
+0,00
+
+0,00
+
+0,00
+
+0,00
+
+7,6
+
+1,6
+
+0,00
+
+0,00
+
+0,00
+
+0,00
+
+6
+
+1
+
+1,02
+
+0,00
+
+0,00
+
+0,00
+
+11,2
+
+7,5
+
+0,00
+
+-6,0
+
+24,0
+
+0,00
+
+7
+
+0
+
+0,00
+
+0,00
+
+0,00
+
+0,00
+
+0,0
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+0,00
+
+8
+
+1
+
+1,03
+
+0,00
+
+0,00
+
+0,00
+
+0,0
+
+0,0
+
+0,00
+
+-6,00
+
+0,00
+
+9
+
+0
+
+0,00
+
+0,00
+
+0,00
+
+0,00
+
+29,5
+
+16,6
+
+0,00
+
+10
+
+0
+
+0,00
+
+0,00
+
+0,00
+
+0,00
+
+9,0
+
+5,8
+
+0,19
+0,00
+
+24,0
+0,00
+
+0,00
+
+0,00
+
+0,00
+
+11
+
+0
+
+0,00
+
+0,00
+
+0,00
+
+0,00
+
+3,5
+
+1,8
+
+0,00
+
+0,00
+
+0,00
+
+0,00
+
+12
+
+0
+
+0,00
+
+0,00
+
+0,00
+
+0,00
+
+6,1
+
+1,6
+
+0,00
+
+0,00
+
+0,00
+
+0,00
+
+13
+
+0
+
+0,00
+
+0,00
+
+0,00
+
+0,00
+
+13,6
+
+5,8
+
+0,00
+
+0,00
+
+0,00
+
+0,00
+
+14
+
+0
+
+0,00
+
+0,00
+
+0,00
+
+0,00
+
+14,9
+
+5,0
+
+0,00
+
+0,00
+
+0,00
+
+0,00
+
+Fonte: Autoria própria.
+
+0,00
+
+85
+
+TABELA 15 – Dados de linha, sistema de 14 barras.
+
+De
+(barra)
+
+Para
+(barra)
+
+Resistência
+R(%)
+
+Reatância
+X(%)
+
+Admitância
+Shunt Total
+(%)
+
+Tap (pu)
+
+1
+1
+2
+2
+2
+3
+4
+4
+4
+5
+6
+6
+6
+7
+7
+9
+9
+10
+12
+13
+
+2
+5
+3
+4
+5
+4
+5
+7
+9
+6
+11
+12
+13
+8
+9
+10
+14
+11
+13
+14
+
+1,938
+5,403
+4,699
+5,811
+5,695
+6,701
+1,335
+0,000
+0,000
+0,000
+9,498
+12,291
+6,615
+0,000
+0,000
+3,181
+12,711
+8,205
+22,092
+17,093
+
+5,917
+22,304
+19,797
+17,632
+17,388
+17,103
+4,211
+20,912
+55,618
+25,202
+19,890
+25,581
+13,027
+17,615
+11,001
+8,450
+27,038
+19,207
+19,988
+34,802
+
+5,280
+4,920
+4,380
+3,740
+3,400
+3,460
+1,280
+0,000
+0,000
+0,000
+0,000
+0,000
+0,000
+0,000
+0,000
+0,000
+0,000
+0,000
+0,000
+0,000
+
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+0,978
+0,969
+0,932
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+
+Fonte: Autoria própria.
+
+Por fim, apresentam-se na tabela 16 os dados referentes ao fator de
+participação das barras de geração e barras de carga utilizados na análise:
+
+86
+
+TABELA 16 – Fatores de participação de carga e geração, sistema de 14 barras.
+
+Barra
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+
+Fator de Participação de Carga
+0
+1/11
+1/11
+1/11
+1/11
+1/11
+0
+0
+1/11
+1/11
+1/11
+1/11
+1/11
+1/11
+
+Fator de Participação de Geração
+1/2
+1/2
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+Fonte: Autoria própria.
+
+87
+
+ANEXO B – DADOS DO SISTEMA DE 30 BARRAS
+
+Apresentam-se nas tabelas 17 e 18 os dados referentes ao sistema de 30
+barras, modelo IEEE. Neste sistema, modificaram-se os dados referentes às tensões
+nominais nas barras de geração e acrescentaram-se dados de potência nominal dos
+geradores.
+TABELA 17 – Dados de barra, sistema de 30 barras.
+(continua)
+
+Shunt
+(pu)
+
+Limite
+Mín. de
+Potência
+Reativa
+Gerada
+(MVAr)
+
+Limite
+Máx. de
+Potência
+Reativa
+Gerada
+(MVAr)
+
+Limite
+Máx. de
+Potência
+Ativa
+Gerada
+(MW)
+
+0,0
+
+0,0
+
+-50,0
+
+155,0
+
+365,0
+
+21,7
+
+12,7
+
+0,0
+
+-40,0
+
+50,0
+
+150,0
+
+Potência
+Ativa
+Gerada
+(MW)
+
+Potência
+Reativa
+Gerada
+(MVAr)
+
+Potência
+Ativa
+Consumida
+(MW)
+
+Potência
+Reativa
+Consumida
+(MVAr)
+
+0,0
+
+Barra
+
+Tipo
+
+Tensão
+(pu)
+
+Ângulo
+(rad)
+
+1
+
+2
+
+1,04
+
+0,00
+
+2
+
+1
+
+1,02
+
+0,00
+0,00
+
+40,0
+
+0,00
+0,00
+
+3
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+2,4
+
+1,2
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+4
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+7,6
+
+1,6
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+0,0
+
+0,00
+
+94,2
+
+19,0
+
+0,0
+
+-40,0
+
+40,0
+
+0,00
+
+0,0
+
+0,00
+
+0,0
+
+0,0
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+22,8
+
+10,9
+
+0,0
+
+0,00
+
+0,00
+0,00
+5
+
+1
+
+1,01
+
+0,00
+
+6
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+7
+
+0
+
+1,00
+
+0,00
+
+8
+
+1
+
+1,02
+
+0,00
+
+0,0
+
+0,00
+
+30,0
+
+30,0
+
+0,0
+
+-10,0
+
+40,0
+
+0,00
+
+9
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+29,5
+
+0,0
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+0,0
+
+0,00
+
+5,8
+
+2,0
+
+0,19
+
+0,00
+
+0,00
+
+0,00
+
+10
+
+0
+
+1,00
+
+0,00
+
+11
+
+1
+
+1,03
+
+0,00
+
+0,0
+
+0,00
+
+0,0
+
+0,0
+
+0,0
+
+-6,00
+
+24,0
+
+0,00
+
+12
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+11,2
+
+7,5
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+0,0
+
+0,00
+
+0,0
+
+0,0
+
+0,0
+
+-6,00
+
+24,0
+
+0,00
+
+0,0
+
+0,00
+
+6,2
+
+1,6
+
+0,0
+
+0,00
+
+0,00
+
+8,2
+
+2,5
+
+0,0
+
+0,00
+0,00
+
+0,00
+
+0,00
+
+13
+
+1
+
+1,035
+
+0,00
+
+14
+
+0
+
+0,00
+0,00
+
+0,0
+
+0,00
+
+15
+
+0
+
+1,00
+1,00
+
+16
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+3,5
+
+1,8
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+17
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+9,0
+
+5,8
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+18
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+3,2
+
+0,9
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+19
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+9,5
+
+3,4
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+20
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+2,2
+
+0,7
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+21
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+17,5
+
+11,2
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+22
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+0,0
+
+0,0
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+23
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+3,2
+
+1,6
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+24
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+8,7
+
+6,7
+
+0,043
+
+0,00
+
+0,00
+
+0,00
+
+88
+
+TABELA 17 – Dados de barra, sistema de 30 barras.
+(conclusão)
+Potência
+Reativa
+Gerada
+(MVAr)
+
+Potência
+Ativa
+Consumida
+(MW)
+
+Potência
+Reativa
+Consumida
+(MVAr)
+
+Shunt
+(pu)
+
+Limite
+Mín. de
+Potência
+Reativa
+Gerada
+(MVAr)
+
+Limite
+Máx. de
+Potência
+Reativa
+Gerada
+(MVAr)
+
+Limite
+Máx. de
+Potência
+Ativa
+Gerada
+(MW)
+
+Barra
+
+Tipo
+
+Tensão
+(pu)
+
+Ângulo
+(rad)
+
+Potência
+Ativa
+Gerada
+(MW)
+
+25
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+0,0
+
+0,0
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+26
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+3,5
+
+2,3
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+27
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+0,0
+
+0,0
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+28
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+0,0
+
+0,0
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+29
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+2,4
+
+0,9
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+30
+
+0
+
+1,00
+
+0,00
+
+0,0
+
+0,00
+
+10,6
+
+1,9
+
+0,0
+
+0,00
+
+0,00
+
+0,00
+
+Fonte: Autoria própria.
+
+TABELA 18 – Dados de linha, sistema de 30 barras.
+(continua)
+
+De
+(barra)
+
+Para
+(barra)
+
+Resistência
+R (%)
+
+Reatância
+X (%)
+
+1
+1
+2
+2
+2
+3
+4
+4
+5
+6
+6
+6
+6
+6
+8
+9
+9
+10
+10
+10
+10
+12
+12
+12
+
+2
+3
+4
+5
+6
+4
+6
+12
+7
+7
+8
+9
+10
+28
+28
+10
+11
+17
+20
+21
+22
+13
+14
+15
+
+1,92
+4,52
+5,70
+4,72
+5,81
+1,32
+1,19
+0,00
+4,60
+2,67
+1,20
+0,00
+0,00
+1,69
+6,36
+0,00
+0,00
+3,24
+9,36
+3,48
+7,27
+0,00
+12,31
+6,62
+
+5,75
+16,52
+17,37
+19,83
+17,63
+3,79
+4,14
+25,60
+11,60
+8,20
+4,20
+20,80
+55,60
+5,99
+20,00
+11,00
+20,80
+8,45
+20,90
+7,49
+14,99
+14,00
+25,59
+13,04
+
+Admitância
+Shunt Total
+(%)
+5,28
+4,08
+3,68
+4,18
+3,74
+0,84
+0,90
+0,00
+2,04
+1,70
+0,90
+0,00
+0,00
+1,30
+4,28
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+
+Tap (pu)
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+0,932
+1,000
+1,000
+1,000
+0,978
+0,969
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+
+89
+
+TABELA 18 – Dados de linha, sistema de 30 barras.
+(conclusão)
+
+De
+(barra)
+
+Para
+(barra)
+
+Resistência
+R (%)
+
+Reatância
+X (%)
+
+12
+14
+15
+15
+16
+18
+19
+21
+22
+23
+24
+25
+25
+27
+27
+28
+29
+
+16
+15
+18
+23
+17
+19
+20
+22
+24
+24
+25
+26
+27
+29
+30
+27
+30
+
+9,45
+22,10
+10,73
+10,00
+5,24
+6,39
+3,40
+1,16
+11,50
+13,20
+18,85
+25,44
+10,93
+21,98
+32,02
+0,00
+23,99
+
+19,87
+19,97
+21,85
+20,20
+19,23
+12,92
+6,80
+2,36
+17,90
+27,00
+32,92
+38,00
+20,87
+41,53
+60,27
+39,60
+45,33
+
+Admitância
+Shunt Total
+(%)
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+
+Tap (pu)
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+0,968
+1,000
+
+Fonte: Autoria própria.
+
+Em seguida, na tabela 19, os dados referentes ao fator de participação das
+barras de geração e barras de carga utilizados na análise:
+
+90
+
+TABELA 19 – Fatores de participação de carga e geração, sistema de 30 barras.
+
+Barra
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+
+Fator de Participação de Carga
+0
+1/21
+1/21
+1/21
+1/21
+0
+1/21
+1/21
+0
+1/21
+0
+1/21
+0
+1/21
+1/21
+1/21
+1/21
+1/21
+1/21
+1/21
+1/21
+0
+1/21
+1/21
+0
+1/21
+0
+0
+1/21
+1/21
+
+Fator de Participação de Geração
+1/2
+1/2
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+Fonte: Autoria própria.
+
+91
+
+ANEXO C – DADOS DO SISTEMA DE 57 BARRAS
+
+Os dados referentes ao sistema de 57 barras, modelo IEEE, são apresentados
+nas tabelas 20 e 21. Neste sistema, modificaram-se as tensões nominais nas barras
+e acrescentaram-se dados de potência nominal nos geradores.
+TABELA 20 – Dados de barra, sistema de 57 barras.
+(continua)
+
+Potência
+Reativa
+Gerada
+(MVAr)
+
+Potência
+Ativa
+Consumida
+(MW)
+
+Potência
+Reativa
+Consumida
+(MVAr)
+
+Shunt
+(pu)
+
+Limite
+Mín. de
+Potência
+Reativa
+Gerada
+(MVAr)
+
+Limite
+Máx. de
+Potência
+Reativa
+Gerada
+(MVAr)
+
+Limite
+Máx. de
+Potência
+Ativa
+Gerada
+(MW)
+
+Barra
+
+Tipo
+
+Tensão
+(pu)
+
+Ângulo
+(rad)
+
+Potência
+Ativa
+Gerada
+(MW)
+
+1
+
+2
+
+1,04
+
+0,0
+
+0,0
+
+0,0
+
+55,0
+
+17,0
+
+0,0
+
+-100,0
+
+1000,0
+
+2350,0
+
+2
+
+1
+
+1,01
+
+0,0
+
+0,0
+
+0,0
+
+3,0
+
+88,0
+
+0,0
+
+-17,0
+
+50,0
+
+0,0
+
+3
+
+1
+
+1,03
+
+0,0
+
+40,0
+
+0,0
+
+41,0
+
+21,0
+
+0,0
+
+-10,0
+
+60,0
+
+140,0
+
+4
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+5
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+13,0
+
+4,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+6
+
+1
+
+1,02
+
+0,0
+
+0,0
+
+0,0
+
+75,0
+
+2,0
+
+0,0
+
+-8,0
+
+25,0
+
+0,0
+
+7
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+8
+
+1
+
+1,01
+
+0,0
+
+450,0
+
+0,0
+
+150,0
+
+22,0
+
+0,0
+
+-140,0
+
+200,0
+
+470,0
+
+9
+
+1
+
+1,02
+
+0,0
+
+0,0
+
+0,0
+
+121,0
+
+26,0
+
+0,0
+
+-3,0
+
+9,0
+
+0,0
+
+10
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+5,0
+
+2,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+11
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+12
+
+1
+
+1,02
+
+0,0
+
+310,0
+
+0,0
+
+377,0
+
+24,0
+
+0,0
+
+-150,0
+
+155,0
+
+364,0
+
+13
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+18,0
+
+2,3
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+14
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+10,5
+
+5,3
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+15
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+22,0
+
+5,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+16
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+43,0
+
+3,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+17
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+42,0
+
+8,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+18
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+27,2
+
+9,8
+
+0,1
+
+0,0
+
+0,0
+
+0,0
+
+19
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+3,3
+
+0,6
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+20
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+2,3
+
+1,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+21
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+22
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+23
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+6,3
+
+2,1
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+24
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+25
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+6,3
+
+3,2
+
+0,059
+
+0,0
+
+0,0
+
+0,0
+
+92
+
+TABELA 20 – Dados de barra, sistema de 57 barras.
+(conclusão)
+Potência
+Reativa
+Gerada
+(MVAr)
+
+Potência
+Ativa
+Consumida
+(MW)
+
+Potência
+Reativa
+Consumida
+(MVAr)
+
+Shunt
+(pu)
+
+Limite
+Mín. de
+Potência
+Reativa
+Gerada
+(MVAr)
+
+Limite
+Máx. de
+Potência
+Reativa
+Gerada
+(MVAr)
+
+Limite
+Máx. de
+Potência
+Ativa
+Gerada
+(MW)
+
+Barra
+
+Tipo
+
+Tensão
+(pu)
+
+Ângulo
+(rad)
+
+Potência
+Ativa
+Gerada
+(MW)
+
+26
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+27
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+9,3
+
+0,5
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+28
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+4,6
+
+2,3
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+29
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+17,0
+
+2,6
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+30
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+3,6
+
+1,8
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+31
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+5,8
+
+2,9
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+32
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+1,6
+
+0,8
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+33
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+3,8
+
+1,9
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+34
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+35
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+6,0
+
+3,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+36
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+37
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+38
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+14,0
+
+7,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+39
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+40
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+41
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+6,3
+
+3,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+42
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+7,1
+
+4,4
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+43
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+2,0
+
+1,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+44
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+12,0
+
+1,8
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+45
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+46
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+47
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+29,7
+
+11,6
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+48
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+49
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+18,0
+
+8,5
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+50
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+21,0
+
+10,5
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+51
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+18,0
+
+5,3
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+52
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+4,9
+
+2,2
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+53
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+20,0
+
+10,0
+
+0,063
+
+0,0
+
+0,0
+
+0,0
+
+54
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+4,1
+
+1,4
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+55
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+6,8
+
+3,4
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+56
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+7,6
+
+2,2
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+57
+
+0
+
+1,00
+
+0,0
+
+0,0
+
+0,0
+
+6,7
+
+2,0
+
+0,0
+
+0,0
+
+0,0
+
+0,0
+
+Fonte: Autoria própria.
+
+93
+
+TABELA 21 – Dados de linha, sistema de 57 barras.
+(continua)
+
+De
+(barra)
+
+Para
+(barra)
+
+Resistência
+R(%)
+
+Reatância
+X(%)
+
+Admitância
+Shunt Total
+(%)
+
+Tap (pu)
+
+1
+2
+3
+4
+4
+6
+6
+8
+9
+9
+9
+9
+13
+13
+1
+1
+1
+3
+4
+5
+7
+10
+11
+12
+12
+12
+14
+18
+19
+21
+21
+22
+23
+24
+24
+26
+27
+28
+7
+25
+
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+15
+16
+17
+15
+18
+6
+8
+12
+13
+13
+16
+17
+15
+19
+20
+20
+22
+23
+24
+25
+26
+27
+28
+29
+29
+30
+
+0,83
+2,98
+1,12
+6,25
+4,30
+2,00
+3,39
+0,99
+3,69
+2,58
+6,48
+4,81
+1,32
+2,69
+1,78
+4,54
+2,38
+1,62
+0,00
+3,02
+1,39
+2,77
+2,23
+1,78
+1,80
+3,97
+1,71
+46,10
+28,30
+0,00
+7,36
+0,99
+16,60
+0,00
+0,00
+16,50
+6,18
+4,18
+0,00
+13,50
+
+2,80
+8,50
+3,66
+13,20
+14,80
+10,20
+17,30
+5,05
+16,79
+8,48
+29,50
+15,80
+4,34
+8,69
+9,10
+20,60
+10,80
+5,30
+24,23
+6,41
+7,12
+12,62
+7,32
+5,80
+8,13
+17,90
+5,47
+68,50
+43,40
+77,67
+11,70
+1,52
+25,60
+60,28
+4,73
+25,40
+9,54
+5,87
+6,48
+20,20
+
+12,90
+8,18
+3,80
+2,58
+3,48
+2,76
+4,70
+5,48
+4,40
+2,18
+7,72
+4,06
+1,10
+2,30
+9,88
+5,46
+2,86
+5,44
+0,00
+1,24
+1,94
+3,28
+1,88
+6,04
+2,16
+4,76
+1,48
+0,00
+0,00
+0,00
+0,00
+0,00
+0,84
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+0,974
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,043
+1,000
+1,000
+1,000
+1,000
+1,063
+1,000
+1,000
+1,000
+0,967
+1,000
+
+94
+
+TABELA 21 – Dados de linha, sistema de 57 barras.
+(conclusão)
+
+De
+(barra)
+
+Para
+(barra)
+
+Resistência
+R(%)
+
+Reatância
+X(%)
+
+Admitância
+Shunt Total
+(%)
+
+Tap (pu)
+
+30
+31
+32
+34
+34
+35
+36
+37
+37
+36
+22
+11
+41
+41
+38
+15
+14
+46
+47
+48
+49
+50
+10
+13
+29
+52
+53
+54
+11
+44
+40
+56
+56
+39
+57
+38
+38
+9
+
+31
+32
+33
+32
+35
+36
+37
+38
+39
+40
+38
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+51
+49
+52
+53
+54
+55
+43
+45
+56
+41
+42
+57
+56
+49
+48
+55
+
+32,60
+50,70
+3,92
+0,00
+5,20
+4,30
+2,90
+6,51
+2,39
+3,
+1,92
+0,00
+20,70
+0,00
+2,89
+0,00
+0,00
+2,30
+1,82
+8,34
+8,01
+13,86
+0,00
+0,
+14,42
+7,62
+18,78
+17,32
+0,00
+6,24
+0,00
+55,30
+21,25
+0,00
+17,40
+11,50
+3,12
+0,00
+
+49,70
+75,50
+3,60
+95,30
+7,80
+5,37
+3,66
+10,09
+3,79
+4,66
+2,95
+74,90
+35,20
+41,20
+5,85
+10,42
+7,35
+6,80
+2,33
+12,90
+12,80
+22,00
+7,12
+19,10
+18,70
+9,84
+23,20
+22,65
+15,30
+12,42
+119,50
+54,90
+35,40
+135,50
+26,00
+17,70
+4,82
+12,05
+
+0,00
+0,00
+0,00
+0,00
+0,32
+0,16
+0,00
+0,20
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,20
+0,00
+0,00
+0,32
+0,00
+0,48
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,00
+0,40
+0,00
+0,00
+0,00
+0,00
+0,00
+0,30
+0,00
+0,00
+
+1,000
+1,000
+1,000
+0,950
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+1,000
+0,955
+1,000
+1,000
+1,000
+0,955
+0,967
+1,000
+1,000
+1,000
+1,000
+1,000
+0,967
+0,895
+1,000
+1,000
+1,000
+1,000
+0,958
+1,000
+0,987
+1,000
+1,000
+0,980
+1,000
+1,000
+1,000
+0,967
+
+Fonte: Autoria própria.
+
+95
+
+Os fatores de participação de carga e de geração utilizados para a análise são
+apresentados na tabela 22.
+
+TABELA 22 – Fatores de participação de carga e de geração, sistema de 57 barras.
+
+(continua)
+
+Barra
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+
+Fator de Participação de Carga
+1/42
+1/42
+1/42
+0
+1/42
+1/42
+0
+1 42
+1/42
+1/42
+0
+1/42
+1/42
+1/42
+1/42
+1/42
+1/42
+1/42
+1/42
+1/42
+0
+0
+1/42
+0
+1/42
+0
+1/42
+1/42
+1/42
+1/42
+1/42
+1/42
+1/42
+0
+1/42
+0
+
+Fator de Participação de Geração
+0,3
+0
+0,1
+0
+0
+0
+0
+0,3
+0
+0
+0
+0,3
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+96
+
+TABELA 22 – Fatores de participação de carga e de geração, sistema de 57 barras.
+
+(conclusão)
+
+Barra
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+
+Fator de Participação de Carga
+0
+1/42
+0
+0
+1/42
+1/42
+1/42
+1/42
+0
+0
+1/42
+0
+1/42
+1/42
+1/42
+1/42
+1/42
+1/42
+1/42
+1/42
+1/42
+
+Fator de Participação de Geração
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+Fonte: Autoria própria.
+
