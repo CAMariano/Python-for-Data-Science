@@ -2,8 +2,8 @@
 
 Repositório criado para aplicar na prática os códigos desenvolvidos no curso aberto da EdX USanDiego
 
-Pastas
+BRANCHES:
 
-1 - Word-Cloud-TCC
+1 - WordCloud
 
 Word Cloud utilizando o meu TCC como entrada. Identificação das palavras que mais foram escritas;
