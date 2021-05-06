@@ -1,2 +1,2 @@
 
-Fica como tarefa descobrir um modo de delimitar a área de operação do gerador, sem que os limites sejam ultrapassados.
+Fica como tarefa descobrir um modo de delimitar a área de operação estável do gerador, com o preenchimento da interseção dos gráficos.
