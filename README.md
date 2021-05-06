@@ -1,6 +1,6 @@
 # Python-for-Data-Science
 
-Repositório criado para aplicar na prática os códigos desenvolvidos no curso aberto da edX UC San Diego
+Repositório criado para aplicar na prática os conceitos aprendidos em Data Science
 
 BRANCHES:
 
@@ -12,4 +12,8 @@ Word Cloud utilizando o meu TCC como entrada. Identificação das palavras que m
 
 Utilizando o numpy, criei um filtro em uma imagem de termografia de um conjunto motorredutor, onde é possível verificar
 com destaque onde está a maior temperatura.
+
+3 - Curva de Capabilidade de um Gerador Síncrono
+
+Utilizando a biblioteca matplotlib, criei um arquivo jupyter notebook que, ao inserir os dados de tensão de fase, tensão interna gerada, reatância síncrona e potência nominal, é retornado um gráfico com os limites de corrente rotórica, estatórica e da turbina do gerador síncrono.
 
