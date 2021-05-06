@@ -1,6 +1,6 @@
 # Python-for-Data-Science
 
-Repositório criado para aplicar na prática os códigos desenvolvidos no curso aberto da EdX USanDiego
+Repositório criado para aplicar na prática os códigos desenvolvidos no curso aberto da edX UC San Diego
 
 BRANCHES:
 
