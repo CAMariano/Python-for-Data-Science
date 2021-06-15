@@ -17,3 +17,7 @@ com destaque onde está a maior temperatura.
 
 Utilizando a biblioteca matplotlib, criei um arquivo jupyter notebook que, ao inserir os dados de tensão de fase, tensão interna gerada, reatância síncrona e potência nominal, é retornado um gráfico com os limites de corrente rotórica, estatórica e da turbina do gerador síncrono.
 
+4 - master branch
+
+- Data exploration MovieLens: Principais funções utilizadas para tratamento e exploração de dados, em andamento...
+
